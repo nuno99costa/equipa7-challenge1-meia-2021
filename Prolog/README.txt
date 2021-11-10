@@ -19,18 +19,10 @@ Acrescentar descricao do virus:
 
 Predicados importantes:
     run: Corre tudo direitinho desde o inicio
-    arranca_motor: Pode ser necessário como explicado em baixo
     factos: Escreve os factos todos
     regras: Escreve as regras todas
     metaconhecimento: Escreve as evidencias/hipoteses, e as regras que cada uma delas pode disparar
     conclusoes: Escreve as conclusoes todas
-
-
-O run não é perfeito porque existe um problema com o arranca_motor dos professores,
-    por vezes é preciso correr o arranca_motor várias vezes até dar 'true'.
-
-A razão de ele não funcionar é porque o sistema não tem em consideração
-    os factos que são criados enquando o sistema corre. 
-    Nao faco ideia porque é que isto acontece mas é o que é.
+    
 
 Não perdi tempo nenhum com o como nem whynot. 

@@ -69,10 +69,10 @@ carrega_bc([NBC|NBCs]):-
 		regras,
 		carrega_bc(NBCs).
 
-arranca_motor:-	facto(N,Facto),write('Novo facto -> '),write(N),write(' - '),writeln(Facto),
+arranca_motor:-	repeat, facto(N,Facto),
 		facto_dispara_regras1(Facto, LRegras),
 		dispara_regras(N, Facto, LRegras),
-		ultimo_facto(N).
+		ultimo_facto(N),!.
 
 facto_dispara_regras1(Facto, LRegras):-
 	facto_dispara_regras(Facto, LRegras),

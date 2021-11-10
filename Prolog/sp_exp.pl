@@ -15,25 +15,61 @@
 :-dynamic facto/2.
 :-dynamic facto_dispara_regras/2.
 
-bases_conhecimento(['hideandseek_1.txt']).
+:-include('1-hideandseek.txt').
+:-include('42-trojan.txt').
+
+bases_conhecimento([
+		'1-hideandseek.txt',
+		'42-trojan.txt'
+	]).
+
+evidencias([
+		evidencia(orig_pkts,10),
+		evidencia(resp_pkts,2),
+		evidencia(conn_state,'S2'),
+		evidencia(history,55),
+		evidencia(missed_bytes,666),
+		evidencia(duration,0.9)
+	]).
+
+hipoteses([
+	hipotese(orig_pkts_le11),
+	hipotese(orig_pkts_le11_resp_pkts_le2),
+	hipotese(orig_pkts_le11_resp_pkts_le2_conn_state_niS2),
+	hipotese(missed_bytes_g730),
+	hipotese(missed_bytes_le730)	
+]).
+
+virus([
+		('hide and seek', hide_and_seek),
+		('trojan', trojan)
+	]).
+
+run:-
+	limpar_bc, inserir_evidencias,		% Codigo temporario para testes
+	ultimo_facto,
+	gera_metaconhecimento,
+	arranca_motor.
 
 carrega_bc:-
 		%write('NOME DA BASE DE CONHECIMENTO (terminar com .)-> '),
 		%read(NBC),
-		bases_conhecimento(NBCs)
-		carrega_bc(NBCs).
+		bases_conhecimento(NBCs),
+		carrega_bc(NBCs),
+		% ultima_regra, 
+
+		ultimo_facto,
+		gera_metaconhecimento.
+		
 
 carrega_bc([]):-nl.
 carrega_bc([NBC|NBCs]):-
 		consult(NBC),
 		write(' -- Consulted '),write(NBC),write(' --'),nl,
-		carrega_bc(NBCs),
-		limpar_bc, inserir_evidencias, 			% Codigo temporario para testes
-		% ultima_regra, 
-		ultimo_facto,
-		gera_metaconhecimento.
+		regras,
+		carrega_bc(NBCs).
 
-arranca_motor:-	facto(N,Facto),
+arranca_motor:-	facto(N,Facto),write('Novo facto -> '),write(N),write(' - '),writeln(Facto),
 		facto_dispara_regras1(Facto, LRegras),
 		dispara_regras(N, Facto, LRegras),
 		ultimo_facto(N).
@@ -50,7 +86,7 @@ dispara_regras(N, Facto, [ID|LRegras]):-
 	% Instancia Facto em LHS
 	verifica_condicoes(LHS, LFactos),
 
-	% Acho que ja nao e necessario
+	% Acho que ja nao e necessario - Jose
 	%member(N,LFactos),
 	concluir(RHS,ID,LFactos),
 	!,
@@ -153,9 +189,20 @@ compara(V1,=<,V):-V1=<V.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Visualizacao da base de factos
 
-mostra_factos:-
-	findall(N, facto(N, _), LFactos),
-	escreve_factos(LFactos).
+factos:-
+		findall(N, facto(N, _), LFactos),
+		escreve_factos(LFactos).
+
+regras:-
+		findall(regra ID se LHS entao RHS, regra ID se LHS entao RHS, Rs),
+		write_each(Rs).
+
+metaconhecimento:-
+		findall((F,R), facto_dispara_regras(F,R),L),
+		write_each(L).
+
+write_each([]).
+write_each([E|Es]):-writeln(E),write_each(Es).
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -296,13 +343,9 @@ ultima_regra:-
 
 gera_metaconhecimento:-
 	retractall(facto_dispara_regras(_,_)),	
-	gera_metaconhecimento([
-		evidencia(orig_pkts,_),
-		evidencia(resp_pkts,_),
-		evidencia(conn_state,_),
-		evidencia(history,_)
-	]).
-
+	evidencias(E),hipoteses(H),
+	append(E,H,L),
+	gera_metaconhecimento(L).
 
 gera_metaconhecimento([]).
 gera_metaconhecimento([F|LF]):-gera_metaconhecimento1(F),
@@ -318,8 +361,22 @@ limpar_bc:-
 		retractall(facto(_,_)).
 
 inserir_evidencias:-
-		assertz(facto(1, evidencia(orig_pkts, 10))),
-		assertz(facto(2, evidencia(resp_pkts, 2))),
-		assertz(facto(3, evidencia(conn_state, 'S22'))),
-		assertz(facto(4, evidencia(history, 55))).
+		evidencias(Es),
+		inserir_evidencia(1,Es).
 
+inserir_evidencia(_, []):-!.
+inserir_evidencia(N, [E|Es]):-
+		assertz(facto(N, E)),
+		N1 is N+1,
+		inserir_evidencia(N1, Es).
+
+
+conclusoes:-
+		virus(Vs),
+		conclusoes1(Vs).
+		
+conclusoes1([]).
+conclusoes1([(Name, Id)|Vs]):-
+	facto(_, conclusao(Id, P)),
+	write('Probabilidade do virus '),write(Name),write(': '),writeln(P),
+	conclusoes1(Vs).

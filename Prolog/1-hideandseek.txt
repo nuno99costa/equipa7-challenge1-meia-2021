@@ -28,4 +28,5 @@ regra hns7
 
 regra hns8
 	se [hipotese(orig_pkts_le11_resp_pkts_le2_conn_state_niS2) e avalia(evidencia(history, =<, 38.5))]
-	entao [cria_facto(conclusao(hide_and_seek, 0))]. 
+	entao [cria_facto(conclusao(hide_and_seek, 0))].
+

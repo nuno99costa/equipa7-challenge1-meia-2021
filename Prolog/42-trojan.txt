@@ -1,0 +1,23 @@
+regra trj1
+	se [avalia(evidencia(missed_bytes, >, 730))]
+	entao [cria_facto(hipotese(missed_bytes_g730))].
+
+regra trj2
+	se [avalia(evidencia(missed_bytes, =<, 730))]
+	entao [cria_facto(hipotese(missed_bytes_le730))].
+
+regra trj3
+	se [hipotese(missed_bytes_g730) e avalia(evidencia(duration, >, 1.0152))]
+	entao [cria_facto(conclusao(trojan, 8.33))].
+
+regra trj4
+	se [hipotese(missed_bytes_g730) e avalia(evidencia(duration, =<, 1.0152))]
+	entao [cria_facto(conclusao(trojan, 53.74))].
+
+regra trj5
+	se [hipotese(missed_bytes_le730) e avalia(evidencia(orig_pkts, >, 30))]
+	entao [cria_facto(conclusao(trojan, 2.45))].
+
+regra trj6
+	se [hipotese(missed_bytes_le730) e avalia(evidencia(orig_pkts, =<, 30))]
+	entao [cria_facto(conclusao(trojan, 0))].

@@ -1,0 +1,2 @@
+7 - Acho que deve ser ignorada, tudo unigram
+8 - Acho que deve ser ignorada, demasiado vaga e pequeno sample

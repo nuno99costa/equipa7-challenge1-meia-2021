@@ -20,6 +20,7 @@
 :-include('9-hajime.txt').
 :-include('17-kenjiro.txt').
 :-include('33-kenjiro.txt').
+:-include('35-mirai.txt').
 :-include('39-ircbot.txt').
 :-include('42-trojan.txt').
 :-include('48-mirai.txt').
@@ -29,6 +30,7 @@ bases_conhecimento([
 		'9-hajime.txt',
 		'17-kenjiro.txt',
 		'33-kenjiro.txt',
+		'35-mirai.txt',
 		'39-ircbot.txt',
 		'42-trojan.txt',
 		'48-mirai.txt'
@@ -74,6 +76,11 @@ hipoteses([
 	hipotese(_,id_resp_p_le101),
 	hipotese(_,id_resp_p_le8080_id_resp_p_g101_orig_pkts_le4),
 
+	% 35
+	hipotese(_,history_g9),
+	hipotese(_,history_le9),
+	hipotese(_,history_le9_id_resp_p_g66),
+	
 	% 39
 	hipotese(_,orig_bytes_g94),
 	hipotese(_,orig_bytes_g94_orig_bytes_le114),

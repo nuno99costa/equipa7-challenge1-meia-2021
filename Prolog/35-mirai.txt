@@ -1,0 +1,31 @@
+regra mra2_1
+	se [avalia(history(Con, >, 9))]
+	entao [cria_facto(hipotese(Con, history_g9))].
+
+regra mra2_2
+	se [avalia(history(Con, =<, 9))]
+	entao [cria_facto(hipotese(Con, history_le9))].
+
+regra mra2_3
+	se [hipotese(Con, history_g9) e avalia(orig_pkts(Con, =<, 68))]
+	entao [cria_facto(mirai(Con, 16.42))].
+
+regra mra2_4
+	se [hipotese(Con, history_g9) e avalia(orig_pkts(Con, >, 68))]
+	entao [cria_facto(mirai(Con, 25.00))].
+
+regra mra2_5
+	se [hipotese(Con, history_le9) e avalia(id_resp_p(Con, =<, 66))]
+	entao [cria_facto(mirai(Con, 0.00))].
+
+regra mra2_6
+	se [hipotese(Con, history_le9) e avalia(id_resp_p(Con, >, 66))]
+	entao [cria_facto(hipotese(Con, history_le9_id_resp_p_g66))].
+
+regra mra2_7
+	se [hipotese(Con, history_le9_id_resp_p_g66) e avalia(duration(Con, =<, 2.4132))]
+	entao [cria_facto(mirai(Con, 0.64))].
+
+regra mra2_8
+	se [hipotese(Con, history_le9_id_resp_p_g66) e avalia(duration(Con, >, 2.4132))]
+	entao [cria_facto(mirai(Con, 1.12))].

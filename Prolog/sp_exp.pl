@@ -14,6 +14,7 @@
 :-dynamic ultima_regra/1.
 :-dynamic facto/2.
 :-dynamic facto_dispara_regras/2.
+:-dynamic valores/1.
 
 :-include('1-hideandseek.txt').
 :-include('42-trojan.txt').
@@ -24,26 +25,37 @@ bases_conhecimento([
 	]).
 
 evidencias([
-		evidencia(orig_pkts,10),
-		evidencia(resp_pkts,2),
-		evidencia(conn_state,'S2'),
-		evidencia(history,55),
-		evidencia(missed_bytes,666),
-		evidencia(duration,0.9)
+		orig_pkts(_,_),
+		resp_pkts(_,_),
+		conn_state(_,_),
+		history(_,_),
+		missed_bytes(_,_),
+		duration(_,_)
 	]).
 
 hipoteses([
-	hipotese(orig_pkts_le11),
-	hipotese(orig_pkts_le11_resp_pkts_le2),
-	hipotese(orig_pkts_le11_resp_pkts_le2_conn_state_niS2),
-	hipotese(missed_bytes_g730),
-	hipotese(missed_bytes_le730)	
+	hipotese(_,orig_pkts_le11),
+	hipotese(_,orig_pkts_le11_resp_pkts_le2),
+	hipotese(_,orig_pkts_le11_resp_pkts_le2_conn_state_niS2),
+	hipotese(_,missed_bytes_g730),
+	hipotese(_,missed_bytes_le730)	
 ]).
 
 virus([
 		('hide and seek', hide_and_seek),
-		('trojan', trojan)
+		('trojan', trojan),
+		('mirai', mirai)
 	]).
+
+valores([
+		orig_pkts(c,10),
+		resp_pkts(c,2),
+		conn_state(c,'S2'),
+		history(c,55),
+		missed_bytes(c,666),
+		duration(c,0.9)
+	]).
+
 
 run:-
 	limpar_bc, inserir_evidencias,		% Codigo temporario para testes
@@ -66,13 +78,15 @@ carrega_bc([]):-nl.
 carrega_bc([NBC|NBCs]):-
 		consult(NBC),
 		write(' -- Consulted '),write(NBC),write(' --'),nl,
-		regras,
 		carrega_bc(NBCs).
 
-arranca_motor:-	repeat, facto(N,Facto),
+arranca_motor:-arranca_motor(0),!.
+
+arranca_motor(N):-ultimo_facto(N),!.
+arranca_motor(N):-N1 is N+1, facto(N1,Facto),
 		facto_dispara_regras1(Facto, LRegras),
 		dispara_regras(N, Facto, LRegras),
-		ultimo_facto(N),!.
+		arranca_motor(N1).
 
 facto_dispara_regras1(Facto, LRegras):-
 	facto_dispara_regras(Facto, LRegras),
@@ -361,7 +375,7 @@ limpar_bc:-
 		retractall(facto(_,_)).
 
 inserir_evidencias:-
-		evidencias(Es),
+		valores(Es),
 		inserir_evidencia(1,Es).
 
 inserir_evidencia(_, []):-!.
@@ -370,13 +384,22 @@ inserir_evidencia(N, [E|Es]):-
 		N1 is N+1,
 		inserir_evidencia(N1, Es).
 
-
+% Predicato temporario
 conclusoes:-
+		conclusoes(c).
+conclusoes(Con):-
 		virus(Vs),
-		conclusoes1(Vs).
+		write(' -- Conexao '),write(Con),write(' --'),nl,
+		conclusoes1(Con,Vs).
 		
-conclusoes1([]).
-conclusoes1([(Name, Id)|Vs]):-
-	facto(_, conclusao(Id, P)),
-	write('Probabilidade do virus '),write(Name),write(': '),writeln(P),
-	conclusoes1(Vs).
+conclusoes1(_, []):-!.
+conclusoes1(Con, [(Name, Id)|Vs]):-
+		probabilidade(Con,Id,P),
+		write('	  Probabilidade do virus '),write(Name),write(': '),writeln(P),
+		conclusoes1(Con, Vs).
+
+probabilidade(Con, Id, P):-
+		F =.. [Id,Con,N],
+		findall(N, facto(_,F), Ns), max_list(Ns, P),!.
+probabilidade(_, _, 0).
+	

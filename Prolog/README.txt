@@ -8,13 +8,15 @@ Acrescetar ficheiro a base_de_conhecimento:
     +- Linha 21
 
 Acrescentar novas evidencias e hipoteses da nova arvore:
-    Nas evidencias o segundo valor é o que querem usar nos testes
-    +- Linhas 26 - 41
+    +- Linhas 26 - 42
+
+Acrescentar valores para testes
+    +- Linhas 51 - 60
 
 Acrescentar descricao do virus:
     (Nome do virus, Id)
-    O Id é aquele que usam quando criam a conclusao (conclusao(Id, Probabilidade))
-    +- Linha 43
+    O Id é aquele que usam quando criam a conclusao (Id(c, Probabilidade))
+    +- Linha 44
 
 
 Predicados importantes:

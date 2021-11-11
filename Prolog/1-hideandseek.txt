@@ -1,32 +1,32 @@
 regra hns1
-	se [avalia(evidencia(orig_pkts, >, 11.5))]
-	entao [cria_facto(conclusao(hide_and_seek, 100))].
+	se [avalia(orig_pkts(Con, >, 11.5))]
+	entao [cria_facto(hide_and_seek(Con, 100))].
 
 regra hns2
-	se [avalia(evidencia(orig_pkts, =<, 11.5))]
-	entao [cria_facto(hipotese(orig_pkts_le11))].
+	se [avalia(orig_pkts(Con, =<, 11.5))]
+	entao [cria_facto(hipotese(Con, orig_pkts_le11))].
 
 regra hns3
-	se [hipotese(orig_pkts_le11) e avalia(evidencia(resp_pkts, >, 2))]
-	entao [cria_facto(conclusao(hide_and_seek, 15.43))].
+	se [hipotese(Con, orig_pkts_le11) e avalia(resp_pkts(Con, >, 2))]
+	entao [cria_facto(hide_and_seek(Con, 15.43))].
 
 regra hns4
-	se [hipotese(orig_pkts_le11) e avalia(evidencia(resp_pkts, =<, 2))]
-	entao [cria_facto(hipotese(orig_pkts_le11_resp_pkts_le2))].
+	se [hipotese(Con, orig_pkts_le11) e avalia(resp_pkts(Con, =<, 2))]
+	entao [cria_facto(hipotese(Con, orig_pkts_le11_resp_pkts_le2))].
 
 regra hns5
-	se [hipotese(orig_pkts_le11_resp_pkts_le2) e membro(evidencia(conn_state, ['S2']))]
-	entao [cria_facto(conclusao(hide_and_seek, 13.69))].
+	se [hipotese(Con, orig_pkts_le11_resp_pkts_le2) e membro(conn_state(Con, ['S2']))]
+	entao [cria_facto(hide_and_seek(Con, 13.69))].
 
 regra hns6
-	se [hipotese(orig_pkts_le11_resp_pkts_le2) e nao membro(evidencia(conn_state, ['S2']))]
-	entao [cria_facto(hipotese(orig_pkts_le11_resp_pkts_le2_conn_state_niS2))].
+	se [hipotese(Con, orig_pkts_le11_resp_pkts_le2) e nao membro(conn_state(Con, ['S2']))]
+	entao [cria_facto(hipotese(Con, orig_pkts_le11_resp_pkts_le2_conn_state_niS2))].
 
 regra hns7
-	se [hipotese(orig_pkts_le11_resp_pkts_le2_conn_state_niS2) e avalia(evidencia(history, >, 38.5))]
-	entao [cria_facto(conclusao(hide_and_seek, 1.27))]. 
+	se [hipotese(Con, orig_pkts_le11_resp_pkts_le2_conn_state_niS2) e avalia(history(Con, >, 38.5))]
+	entao [cria_facto(hide_and_seek(Con, 1.27))]. 
 
 regra hns8
-	se [hipotese(orig_pkts_le11_resp_pkts_le2_conn_state_niS2) e avalia(evidencia(history, =<, 38.5))]
-	entao [cria_facto(conclusao(hide_and_seek, 0))].
+	se [hipotese(orig_pkts_le11_resp_pkts_le2_conn_state_niS2) e avalia(history(Con, =<, 38.5))]
+	entao [cria_facto(hide_and_seek(Con, 0))].
 

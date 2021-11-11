@@ -17,10 +17,12 @@
 :-dynamic valores/1.
 
 :-include('1-hideandseek.txt').
+:-include('9-hajime.txt').
 :-include('42-trojan.txt').
 
 bases_conhecimento([
 		'1-hideandseek.txt',
+		'9-hajime.txt',
 		'42-trojan.txt'
 	]).
 
@@ -30,7 +32,8 @@ evidencias([
 		conn_state(_,_),
 		history(_,_),
 		missed_bytes(_,_),
-		duration(_,_)
+		duration(_,_),
+		id_resp_p(_,_)
 	]).
 
 hipoteses([
@@ -38,14 +41,18 @@ hipoteses([
 	hipotese(_,orig_pkts_le11_resp_pkts_le2),
 	hipotese(_,orig_pkts_le11_resp_pkts_le2_conn_state_niS2),
 	hipotese(_,missed_bytes_g730),
-	hipotese(_,missed_bytes_le730)	
+	hipotese(_,missed_bytes_le730),
+	hipotese(_,resp_pkts_le33),
+	hipotese(_,resp_pkts_le33_resp_pkts_g3),
+	hipotese(_,resp_pkts_le3)
 ]).
 
 virus([
 		('hide and seek', hide_and_seek),
 		('trojan', trojan),
-		('mirai', mirai)
+		('hajime', hajime)
 	]).
+
 
 valores([
 		orig_pkts(c,10),
@@ -53,7 +60,8 @@ valores([
 		conn_state(c,'S2'),
 		history(c,55),
 		missed_bytes(c,666),
-		duration(c,0.9)
+		duration(c,0.9),
+		id_resp_p(c,21)
 	]).
 
 

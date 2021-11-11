@@ -1,0 +1,59 @@
+regra kjr2_1
+	se [avalia(id_resp_p(Con, >, 22648))]
+	entao [cria_facto(hipotese(Con, id_resp_p_g22648))].
+
+regra kjr2_2
+	se [avalia(id_resp_p(Con, =<, 22648)) e avalia(id_resp_p(Con, >, 8080))]
+	entao [cria_facto(kenjiro(Con, 11.16))].
+
+regra kjr2_3
+	se [hipotese(Con, id_resp_p_g22648) e avalia(id_orig_p(Con, >, 39624))]
+	entao [cria_facto(hipotese(Con, id_resp_p_g22648_id_orig_p_g39624))].
+
+regra kjr2_4
+	se [hipotese(Con, id_resp_p_g22648) e avalia(id_orig_p(Con, =<, 39624))]
+	entao [cria_facto(kenjiro(Con, 85.5))].
+
+regra kjr2_5
+	se [hipotese(Con, id_resp_p_g22648_id_orig_p_g39624) e avalia(history(Con, >, 8))]
+	entao [cria_facto(kenjiro(Con, 0))].
+
+regra kjr2_6
+	se [hipotese(Con, id_resp_p_g22648_id_orig_p_g39624) e avalia(history(Con, =<, 8))]
+	entao [cria_facto(kenjiro(Con, 72.57))].
+
+regra kjr2_7
+	se [hipotese(Con, id_resp_p_le22648) e avalia(id_resp_p(Con, >, 8080))]
+	entao [cria_facto(kenjiro(Con, 11.16))].
+
+regra kjr2_8
+	se [avalia(id_resp_p(Con, =<, 8080)) e avalia(id_resp_p(Con, >, 101))]
+	entao [cria_facto(hipotese(Con, id_resp_p_le8080_id_resp_p_g101))].
+
+regra kjr2_9
+	se [avalia(id_resp_p(Con, =<, 101))]
+	entao [cria_facto(hipotese(Con, id_resp_p_le101))].
+
+regra kjr2_10
+	se [hipotese(Con, id_resp_p_le8080_id_resp_p_g101) e avalia(orig_pkts(Con, >, 4))]
+	entao [cria_facto(kenjiro(Con, 33.33))].
+
+regra kjr2_11
+	se [hipotese(Con, id_resp_p_le8080_id_resp_p_g101) e avalia(orig_pkts(Con, =<, 4))]
+	entao [cria_facto(hipotese(Con, id_resp_p_le8080_id_resp_p_g101_orig_pkts_le4))].
+
+regra kjr2_12
+	se [hipotese(Con, id_resp_p_le8080_id_resp_p_g101_orig_pkts_le4) e avalia(history(id_orig_p, >, 44814))]
+	entao [cria_facto(kenjiro(Con, 7.55))].
+
+regra kjr2_13
+	se [hipotese(Con, id_resp_p_le8080_id_resp_p_g101_orig_pkts_le4) e avalia(history(id_orig_p, =<, 44814))]
+	entao [cria_facto(kenjiro(Con, 0))].
+
+regra kjr2_14
+	se [hipotese(Con, id_resp_p_le101) e membro(conn_state(Con, ['S0']))]
+	entao [cria_facto(kenjiro(Con, 1.91))].
+
+regra kjr2_15
+	se [hipotese(Con, id_resp_p_le101) e nao membro(conn_state(Con, ['S0']))]
+	entao [cria_facto(kenjiro(Con, 0))].

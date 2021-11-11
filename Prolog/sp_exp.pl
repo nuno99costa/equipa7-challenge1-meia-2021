@@ -19,12 +19,14 @@
 :-include('1-hideandseek.txt').
 :-include('9-hajime.txt').
 :-include('17-kenjiro.txt').
+:-include('33-kenjiro.txt').
 :-include('42-trojan.txt').
 
 bases_conhecimento([
 		'1-hideandseek.txt',
 		'9-hajime.txt',
 		'17-kenjiro.txt',
+		'33-kenjiro.txt',
 		'42-trojan.txt'
 	]).
 
@@ -37,7 +39,8 @@ evidencias([
 		duration(_,_),
 		id_resp_p(_,_),
 		service(_,_),
-		orig_ip_bytes(_,_)
+		orig_ip_bytes(_,_),
+		id_orig_p(_,_)
 	]).
 
 hipoteses([
@@ -53,7 +56,13 @@ hipoteses([
 	hipotese(_,id_resp_p_le45042_service_inhttp),
 	hipotese(_,id_resp_p_le45042_service_nihttp),
 	hipotese(_,id_resp_p_le45042_service_nihttp_orig_pkts_le30),
-	hipotese(_,id_resp_p_le45042_service_nihttp_orig_pkts_le30_orig_ip_bytes_g348)
+	hipotese(_,id_resp_p_le45042_service_nihttp_orig_pkts_le30_orig_ip_bytes_g348),
+	hipotese(_,id_resp_p_g22648),
+	hipotese(_,id_resp_p_g22648_id_orig_p_g39624),
+	hipotese(_,id_resp_p_le8080),
+	hipotese(_,id_resp_p_le8080_id_resp_p_g101),
+	hipotese(_,id_resp_p_le101),
+	hipotese(_,id_resp_p_le8080_id_resp_p_le101_orig_pkts_le4)
 ]).
 
 virus([
@@ -73,7 +82,8 @@ valores([
 		duration(c,0.9),
 		id_resp_p(c,21),
 		service(c,'ssh'),
-		orig_ip_bytes(c,412)
+		orig_ip_bytes(c,412),
+		id_orig_p(c,412)
 	]).
 
 run:-

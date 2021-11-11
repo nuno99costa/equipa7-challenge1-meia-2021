@@ -20,14 +20,18 @@
 :-include('9-hajime.txt').
 :-include('17-kenjiro.txt').
 :-include('33-kenjiro.txt').
+:-include('39-ircbot.txt').
 :-include('42-trojan.txt').
+:-include('48-mirai.txt').
 
 bases_conhecimento([
 		'1-hideandseek.txt',
 		'9-hajime.txt',
 		'17-kenjiro.txt',
 		'33-kenjiro.txt',
-		'42-trojan.txt'
+		'39-ircbot.txt',
+		'42-trojan.txt',
+		'48-mirai.txt'
 	]).
 
 evidencias([
@@ -40,38 +44,57 @@ evidencias([
 		id_resp_p(_,_),
 		service(_,_),
 		orig_ip_bytes(_,_),
-		id_orig_p(_,_)
+		id_orig_p(_,_),
+		orig_bytes(_,_),
+		resp_bytes(_,_)
 	]).
 
 hipoteses([
+	% 1
 	hipotese(_,orig_pkts_le11),
 	hipotese(_,orig_pkts_le11_resp_pkts_le2),
 	hipotese(_,orig_pkts_le11_resp_pkts_le2_conn_state_niS2),
-	hipotese(_,missed_bytes_g730),
-	hipotese(_,missed_bytes_le730),
+
+	% 9
 	hipotese(_,resp_pkts_le33),
 	hipotese(_,resp_pkts_le33_resp_pkts_g3),
 	hipotese(_,resp_pkts_le3),
+
+	% 17
 	hipotese(_,id_resp_p_le45042),
 	hipotese(_,id_resp_p_le45042_service_inhttp),
 	hipotese(_,id_resp_p_le45042_service_nihttp),
 	hipotese(_,id_resp_p_le45042_service_nihttp_orig_pkts_le30),
 	hipotese(_,id_resp_p_le45042_service_nihttp_orig_pkts_le30_orig_ip_bytes_g348),
+
+	% 33
 	hipotese(_,id_resp_p_g22648),
 	hipotese(_,id_resp_p_g22648_id_orig_p_g39624),
-	hipotese(_,id_resp_p_le8080),
 	hipotese(_,id_resp_p_le8080_id_resp_p_g101),
 	hipotese(_,id_resp_p_le101),
-	hipotese(_,id_resp_p_le8080_id_resp_p_le101_orig_pkts_le4)
+	hipotese(_,id_resp_p_le8080_id_resp_p_g101_orig_pkts_le4),
+
+	% 39
+	hipotese(_,orig_bytes_g94),
+	hipotese(_,orig_bytes_g94_orig_bytes_le114),
+
+	% 42
+	hipotese(_,missed_bytes_g730),
+	hipotese(_,missed_bytes_le730),
+
+	% 48
+	hipotese(_,resp_pkts_le304),
+	hipotese(_,resp_pkts_le304_resp_bytes_g82355)
 ]).
 
 virus([
 		('Hide and Seek', hide_and_seek),
 		('Trojan', trojan),
 		('Hajime', hajime),
-		('Kenjiro', kenjiro)
+		('Kenjiro', kenjiro),
+		('IRCBot', ircbot),
+		('Mirai', mirai)
 	]).
-
 
 valores([
 		orig_pkts(c,10),
@@ -83,7 +106,9 @@ valores([
 		id_resp_p(c,21),
 		service(c,'ssh'),
 		orig_ip_bytes(c,412),
-		id_orig_p(c,412)
+		id_orig_p(c,412),
+		orig_bytes(c,111),
+		resp_bytes(c,44)
 	]).
 
 run:-

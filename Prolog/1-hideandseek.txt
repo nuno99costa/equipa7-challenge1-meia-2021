@@ -1,6 +1,6 @@
 regra hns1
 	se [avalia(orig_pkts(Con, >, 11.5))]
-	entao [cria_facto(hide_and_seek(Con, 100))].
+	entao [cria_facto(hide_and_seek(Con, 100.00))].
 
 regra hns2
 	se [avalia(orig_pkts(Con, =<, 11.5))]
@@ -27,6 +27,6 @@ regra hns7
 	entao [cria_facto(hide_and_seek(Con, 1.27))]. 
 
 regra hns8
-	se [hipotese(orig_pkts_le11_resp_pkts_le2_conn_state_niS2) e avalia(history(Con, =<, 38.5))]
-	entao [cria_facto(hide_and_seek(Con, 0))].
+	se [hipotese(Con, orig_pkts_le11_resp_pkts_le2_conn_state_niS2) e avalia(history(Con, =<, 38.5))]
+	entao [cria_facto(hide_and_seek(Con, 0.00))].
 

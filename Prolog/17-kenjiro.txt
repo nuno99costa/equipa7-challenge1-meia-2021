@@ -1,6 +1,6 @@
 regra kjr1_1
 	se [avalia(id_resp_p(Con, >, 45042))]
-	entao [cria_facto(kenjiro(Con, 29.6))].
+	entao [cria_facto(kenjiro(Con, 29.60))].
 
 regra kjr1_2
 	se [avalia(id_resp_p(Con, =<, 45042))]

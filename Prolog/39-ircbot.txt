@@ -1,6 +1,6 @@
 regra irc1
 	se [avalia(orig_bytes(Con, =<, 94))]
-	entao [cria_facto(ircbot(Con, 0))].
+	entao [cria_facto(ircbot(Con, 0.00))].
 
 regra irc2
 	se [avalia(orig_bytes(Con, >, 94))]
@@ -16,9 +16,9 @@ regra irc4
 
 regra irc5
 	se [hipotese(Con, orig_bytes_g94_orig_bytes_le114) e avalia(resp_bytes(Con, =<, 49))]
-	entao [cria_facto(ircbot(Con, 0))].
+	entao [cria_facto(ircbot(Con, 0.00))].
 
 regra irc6
 	se [avalia(orig_bytes(Con, >, 114))]
-	entao [cria_facto(ircbot(Con, 0))].
+	entao [cria_facto(ircbot(Con, 0.00))].
 

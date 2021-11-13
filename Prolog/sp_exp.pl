@@ -1,6 +1,5 @@
 % Versao preparada para lidar com regras que contenham negacao (nao)
 % Metaconhecimento
-% Usar base de conhecimento veIculos2.txt
 % Explicacoes como?(how?) e porque nao?(whynot?)
 
 :-op(220,xfx,entao).
@@ -19,7 +18,7 @@
 :-include('1-hideandseek.txt').
 :-include('9-hajime.txt').
 :-include('17-kenjiro.txt').
-:-include('20-torii.txt').
+:-include('20-torii.txt'). 
 :-include('21-torii.txt').
 :-include('33-kenjiro.txt').
 :-include('34-mirai.txt').
@@ -61,8 +60,6 @@ evidencias([
 		id_orig_p(_,_),
 		orig_bytes(_,_),
 		resp_bytes(_,_),
-		ip_dest_unigram(_,_),
-		ip_dest_bigram(_,_),
 		resp_ip_bytes(_,_)
 	]).
 
@@ -142,8 +139,7 @@ hipoteses([
 	hipotese(_, orig_ip_bytes_le390632233_orig_ip_bytes_le125909890),
 	hipotese(_, orig_ip_bytes_g390632233_orig_pkts_le125909890),
 	hipotese(_, orig_ip_bytes_g390632233_orig_pkts_g125909890),
-	hipotese(_, orig_ip_bytes_le390632233_orig_ip_bytes_le125909890_id_resp_p_g55610),
-	hipotese(_, orig_ip_bytes_g390632233_orig_pkts_le125909890_ip_dest_bigram_le68220)
+	hipotese(_, orig_ip_bytes_le390632233_orig_ip_bytes_le125909890_id_resp_p_g55610)
 ]).
 
 virus([
@@ -153,26 +149,24 @@ virus([
 		('Kenjiro', kenjiro),
 		('Torii', torii),
 		('IRCBot', ircbot),
-		('Mirai', mirai)
+		('Mirai', mirai),
 		('Gagfyt', gagfyt)
 	]).
 
 valores([
-		orig_pkts(c,10),
-		resp_pkts(c,2),
-		conn_state(c,'S2'),
-		history(c,55),
-		missed_bytes(c,666),
-		duration(c,0.9),
-		id_resp_p(c,21),
-		service(c,'ssh'),
-		orig_ip_bytes(c,412),
-		id_orig_p(c,412),
-		orig_bytes(c,111),
-		resp_bytes(c,44),
-		ip_dest_unigram(c,700),
-		ip_dest_bigram(c,682),
-		resp_ip_bytes(c,63)
+		conn_state(c,'S1'),
+		duration(c,4),
+		history(c,4),
+		id_orig_p(c,3332233),
+		id_resp_p(c,3),
+		missed_bytes(c,6666),
+		orig_bytes(c,150),
+		orig_ip_bytes(c,42222222222),
+		orig_pkts(c,12312312312),	
+		resp_bytes(c,1800),
+		resp_ip_bytes(c,64),	
+		resp_pkts(c,2422),
+		service(c,'http')
 	]).
 
 run:-
@@ -519,5 +513,5 @@ conclusoes1(Con, [(Name, Id)|Vs]):-
 probabilidade(Con, Id, P):-
 		F =.. [Id,Con,N],
 		findall(N, facto(_,F), Ns), max_list(Ns, P),!.
-probabilidade(_, _, 0).
+probabilidade(_, _, 0.00).
 	

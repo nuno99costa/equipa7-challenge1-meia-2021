@@ -1,6 +1,6 @@
 regra hjm1
 	se [avalia(resp_pkts(Con, >, 33))]
-	entao [cria_facto(hajime(Con, 100))].
+	entao [cria_facto(hajime(Con, 100.00))].
 
 regra hjm2
 	se [avalia(resp_pkts(Con, =<, 33))]
@@ -20,7 +20,7 @@ regra hjm5
 
 regra hjm6
 	se [hipotese(Con, resp_pkts_le3) e nao membro(conn_state(Con, ['SF']))]
-	entao [cria_facto(hajime(Con, 0))].
+	entao [cria_facto(hajime(Con, 0.00))].
 
 regra hjm7
 	se [hipotese(Con, resp_pkts_le33_resp_pkts_g3) e avalia(id_resp_p(Con, =<, 22))]

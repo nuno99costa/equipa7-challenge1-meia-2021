@@ -1,23 +1,23 @@
-regra Tor1_1
+regra tor1_1
 	se [avalia(orig_bytes(Con, =<, 7975))]
 	entao [cria_facto(torii(Con, 0.00))].
 
-regra Tor1_2
-	se [avalia(id_resp_p(Con, >, 7975))]
+regra tor1_2
+	se [avalia(orig_bytes(Con, >, 7975))]
 	entao [cria_facto(hipotese(Con, orig_bytes_g7975))].
 
-regra Tor1_3
+regra tor1_3
 	se [hipotese(Con, orig_bytes_g7975) e avalia(history(Con, =<, 5))]
 	entao [cria_facto(hipotese(Con, orig_bytes_g7975_history_le5))].
 
-regra Tor1_4
+regra tor1_4
 	se [hipotese(Con, orig_bytes_g7975) e avalia(history(Con, >, 5))]
 	entao [cria_facto(torii(Con, 43.10))].
 
-regra Tor1_5
+regra tor1_5
 	se [hipotese(Con, orig_bytes_g7975_history_le5) e avalia(history(Con, >, 4))]
 	entao [cria_facto(torii(Con, 74.78))].
 
-regra Tor1_6
+regra tor1_6
 	se [hipotese(Con, orig_bytes_g7975_history_le5) e avalia(history(Con, =<, 4))]
-	entao [cria_facto(torii(Con, 100))].
+	entao [cria_facto(torii(Con, 100.00))].

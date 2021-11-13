@@ -8,7 +8,7 @@ regra mra3_2
 
 regra mra3_3
 	se [hipotese(Con, resp_bytes_g60382) e avalia(resp_bytes(Con, >, 179176))]
-	entao [cria_facto(mirai(Con, 100))].
+	entao [cria_facto(mirai(Con, 100.00))].
 
 regra mra3_4
 	se [hipotese(Con, resp_bytes_g60382) e avalia(resp_bytes(Con, =<, 179176))]

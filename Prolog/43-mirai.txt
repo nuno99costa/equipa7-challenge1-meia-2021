@@ -8,26 +8,26 @@ regra mra4_2
 
 regra mra4_3
 	se [hipotese(Con, id_orig_p_le30647) e avalia(id_resp_p(Con, =<, 45042))]
-	entao [cria_facto(mirai(Con, 0))].
+	entao [cria_facto(mirai(Con, 0.00))].
 
 regra mra4_4
 	se [hipotese(Con, id_orig_p_le30647) e avalia(id_resp_p(Con, >, 45042))]
 	entao [cria_facto(mirai(Con, 0.83))].
 
 regra mra4_5
-	se [hipotese(Con, id_orig_p_g30647) e avalia(duration(Con, >, 3))]
+	se [hipotese(Con, id_orig_p_g30647) e avalia(duration(Con, >, 3.1616))]
 	entao [cria_facto(hipotese(Con, id_orig_p_g30647_duration_g3))].
 
 regra mra4_6
-	se [hipotese(Con, id_orig_p_g30647) e avalia(duration(Con, =<, 3))]
+	se [hipotese(Con, id_orig_p_g30647) e avalia(duration(Con, =<, 3.1616))]
 	entao [cria_facto(hipotese(Con, id_orig_p_g30647_duration_le3))]. 
 
 regra mra4_7
-	se [hipotese(Con, id_orig_p_g30647_duration_g3) e avalia(duration(Con, =<, 4))]
+	se [hipotese(Con, id_orig_p_g30647_duration_g3) e avalia(duration(Con, =<, 4.1452))]
 	entao [cria_facto(mirai(Con, 95.56))].
 	
 regra mra4_8
-	se [hipotese(Con, id_orig_p_g30647_duration_g3) e avalia(duration(Con, >, 4))]
+	se [hipotese(Con, id_orig_p_g30647_duration_g3) e avalia(duration(Con, >, 4.1452))]
 	entao [cria_facto(mirai(Con, 42.72))].
 	
 regra mra4_9
@@ -47,19 +47,19 @@ regra mra4_12
 	entao [cria_facto(mirai(Con, 90.25))].
 	
 regra mra4_13
-	se [hipotese(Con, id_orig_p_g30647_duration_le3_conn_state_iRSTO_S0_orig_bytes_le19) e avalia(duration(Con, >, 0))]
+	se [hipotese(Con, id_orig_p_g30647_duration_le3_conn_state_iRSTO_S0_orig_bytes_le19) e avalia(duration(Con, >, 0.4998))]
 	entao [cria_facto(mirai(Con, 34.61))].
 	
 regra mra4_14
-	se [hipotese(Con, id_orig_p_g30647_duration_le3_conn_state_iRSTO_S0_orig_bytes_le19) e avalia(duration(Con, =<, 0))]
+	se [hipotese(Con, id_orig_p_g30647_duration_le3_conn_state_iRSTO_S0_orig_bytes_le19) e avalia(duration(Con, =<, 0.4998))]
 	entao [cria_facto(mirai(Con, 47.23))].
 	
 regra mra4_15
-	se [hipotese(Con, id_orig_p_g30647_duration_le3_conn_state_niRSTO_S0) e avalia(duration(Con, >, 1))]
+	se [hipotese(Con, id_orig_p_g30647_duration_le3_conn_state_niRSTO_S0) e avalia(duration(Con, >, 1.0609))]
 	entao [cria_facto(hipotese(Con, id_orig_p_g30647_duration_le3_conn_state_niRSTO_S0_duration_g1))].
 	
 regra mra4_16
-	se [hipotese(Con, id_orig_p_g30647_duration_le3_conn_state_niRSTO_S0) e avalia(duration(Con, =<, 1))]
+	se [hipotese(Con, id_orig_p_g30647_duration_le3_conn_state_niRSTO_S0) e avalia(duration(Con, =<, 1.0609))]
 	entao [cria_facto(hipotese(Con, id_orig_p_g30647_duration_le3_conn_state_niRSTO_S0_duration_le1))].
 	
 regra mra4_17

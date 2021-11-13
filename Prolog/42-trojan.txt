@@ -20,4 +20,4 @@ regra trj5
 
 regra trj6
 	se [hipotese(Con, missed_bytes_le730) e avalia(orig_pkts(Con, =<, 30))]
-	entao [cria_facto(trojan(Con, 0))].
+	entao [cria_facto(trojan(Con, 0.00))].

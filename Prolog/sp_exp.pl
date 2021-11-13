@@ -22,6 +22,7 @@
 :-include('20-torii.txt').
 :-include('21-torii.txt').
 :-include('33-kenjiro.txt').
+:-include('34-mirai.txt').
 :-include('35-mirai.txt').
 :-include('39-ircbot.txt').
 :-include('42-trojan.txt').
@@ -37,6 +38,7 @@ bases_conhecimento([
 		'20-torii.txt',
 		'21-torii.txt',
 		'33-kenjiro.txt',
+		'34-mirai.txt',
 		'35-mirai.txt',
 		'39-ircbot.txt',
 		'42-trojan.txt',
@@ -60,7 +62,8 @@ evidencias([
 		orig_bytes(_,_),
 		resp_bytes(_,_),
 		ip_dest_unigram(_,_),
-		ip_dest_bigram(_,_)
+		ip_dest_bigram(_,_),
+		resp_ip_bytes(_,_)
 	]).
 
 hipoteses([
@@ -95,6 +98,10 @@ hipoteses([
 	hipotese(_,id_resp_p_le101),
 	hipotese(_,id_resp_p_le8080_id_resp_p_g101_orig_pkts_le4),
 
+	% 34
+	hipotese(_, id_resp_p_g3461),
+	hipotese(_, id_resp_p_g3461_resp_ip_bytes_g63),
+	
 	% 35
 	hipotese(_,history_g9),
 	hipotese(_,history_le9),
@@ -164,7 +171,8 @@ valores([
 		orig_bytes(c,111),
 		resp_bytes(c,44),
 		ip_dest_unigram(c,700),
-		ip_dest_bigram(c,682)
+		ip_dest_bigram(c,682),
+		resp_ip_bytes(c,63)
 	]).
 
 run:-

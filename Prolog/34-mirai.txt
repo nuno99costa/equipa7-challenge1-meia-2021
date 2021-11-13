@@ -1,0 +1,23 @@
+regra mra5_1
+	se [avalia(id_resp_p(Con, >, 3461))]
+	entao [cria_facto(hipotese(Con, id_resp_p_g3461))].
+
+regra mra5_2
+	se [avalia(id_resp_p(Con, =<, 3461))]
+	entao [cria_facto(mirai(Con, 0.00))].
+
+regra mra5_3
+	se [hipotese(Con, id_resp_p_g3461) e avalia(resp_ip_bytes(Con, >, 63))]
+	entao [cria_facto(hipotese(Con, id_resp_p_g3461_resp_ip_bytes_g63))].
+
+regra mra5_4
+	se [hipotese(Con, id_resp_p_g3461) e avalia(resp_ip_bytes(Con, =<, 63))]
+	entao [cria_facto(mirai(Con, 0.26))].
+
+regra mra5_5
+	se [hipotese(Con, id_resp_p_g3461_resp_ip_bytes_g63) e avalia(resp_pkts(Con, =<, 50))]
+	entao [cria_facto(mirai(Con, 0.09))].
+
+regra mra5_6
+	se [hipotese(Con, id_resp_p_g3461_resp_ip_bytes_g63) e avalia(resp_pkts(Con, >, 50))]
+	entao [cria_facto(mirai(Con, 34.83))].

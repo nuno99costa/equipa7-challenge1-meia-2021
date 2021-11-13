@@ -19,21 +19,27 @@
 :-include('1-hideandseek.txt').
 :-include('9-hajime.txt').
 :-include('17-kenjiro.txt').
+:-include('20-torii.txt').
+:-include('21-torii.txt').
 :-include('33-kenjiro.txt').
 :-include('35-mirai.txt').
 :-include('39-ircbot.txt').
 :-include('42-trojan.txt').
 :-include('48-mirai.txt').
+:-include('49-mirai.txt').
 
 bases_conhecimento([
 		'1-hideandseek.txt',
 		'9-hajime.txt',
 		'17-kenjiro.txt',
+		'20-torii.txt',
+		'21-torii.txt',
 		'33-kenjiro.txt',
 		'35-mirai.txt',
 		'39-ircbot.txt',
 		'42-trojan.txt',
-		'48-mirai.txt'
+		'48-mirai.txt',
+		'49-mirai.txt'
 	]).
 
 evidencias([
@@ -68,6 +74,13 @@ hipoteses([
 	hipotese(_,id_resp_p_le45042_service_nihttp),
 	hipotese(_,id_resp_p_le45042_service_nihttp_orig_pkts_le30),
 	hipotese(_,id_resp_p_le45042_service_nihttp_orig_pkts_le30_orig_ip_bytes_g348),
+	
+	% 20
+	hipotese(_, conn_state_niS2),
+	
+	% 21
+	hipotese(_, orig_bytes_g7975),
+	hipotese(_, orig_bytes_g7975_history_le5),
 
 	% 33
 	hipotese(_,id_resp_p_g22648),
@@ -91,7 +104,12 @@ hipoteses([
 
 	% 48
 	hipotese(_,resp_pkts_le304),
-	hipotese(_,resp_pkts_le304_resp_bytes_g82355)
+	hipotese(_,resp_pkts_le304_resp_bytes_g82355),
+	
+	% 49
+	hipotese(_, resp_bytes_g60382),
+	hipotese(_, resp_bytes_g60382_resp_bytes_le179176),
+	hipotese(_, resp_bytes_g60382_resp_bytes_le179176_resp_bytes_g132319)
 ]).
 
 virus([
@@ -99,6 +117,7 @@ virus([
 		('Trojan', trojan),
 		('Hajime', hajime),
 		('Kenjiro', kenjiro),
+		('Torii', torii),
 		('IRCBot', ircbot),
 		('Mirai', mirai)
 	]).

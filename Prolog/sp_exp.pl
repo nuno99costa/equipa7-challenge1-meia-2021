@@ -27,6 +27,7 @@
 :-include('42-trojan.txt').
 :-include('48-mirai.txt').
 :-include('49-mirai.txt').
+:-include('60-gagfyt.txt').
 
 bases_conhecimento([
 		'1-hideandseek.txt',
@@ -39,7 +40,8 @@ bases_conhecimento([
 		'39-ircbot.txt',
 		'42-trojan.txt',
 		'48-mirai.txt',
-		'49-mirai.txt'
+		'49-mirai.txt',
+		'60-gagfyt.txt'
 	]).
 
 evidencias([
@@ -54,7 +56,9 @@ evidencias([
 		orig_ip_bytes(_,_),
 		id_orig_p(_,_),
 		orig_bytes(_,_),
-		resp_bytes(_,_)
+		resp_bytes(_,_),
+		ip_dest_unigram(_,_),
+		ip_dest_bigram(_,_)
 	]).
 
 hipoteses([
@@ -109,7 +113,17 @@ hipoteses([
 	% 49
 	hipotese(_, resp_bytes_g60382),
 	hipotese(_, resp_bytes_g60382_resp_bytes_le179176),
-	hipotese(_, resp_bytes_g60382_resp_bytes_le179176_resp_bytes_g132319)
+	hipotese(_, resp_bytes_g60382_resp_bytes_le179176_resp_bytes_g132319),
+	
+	% 60
+	hipotese(_, orig_ip_bytes_le390632233),
+	hipotese(_, orig_ip_bytes_g390632233),
+	hipotese(_, orig_ip_bytes_le390632233_orig_ip_bytes_g125909890),
+	hipotese(_, orig_ip_bytes_le390632233_orig_ip_bytes_le125909890),
+	hipotese(_, orig_ip_bytes_g390632233_orig_pkts_le125909890),
+	hipotese(_, orig_ip_bytes_g390632233_orig_pkts_g125909890),
+	hipotese(_, orig_ip_bytes_le390632233_orig_ip_bytes_le125909890_id_resp_p_g55610),
+	hipotese(_, orig_ip_bytes_g390632233_orig_pkts_le125909890_ip_dest_bigram_le68220)
 ]).
 
 virus([
@@ -120,6 +134,7 @@ virus([
 		('Torii', torii),
 		('IRCBot', ircbot),
 		('Mirai', mirai)
+		('Gagfyt', gagfyt)
 	]).
 
 valores([
@@ -134,7 +149,9 @@ valores([
 		orig_ip_bytes(c,412),
 		id_orig_p(c,412),
 		orig_bytes(c,111),
-		resp_bytes(c,44)
+		resp_bytes(c,44),
+		ip_dest_unigram(c,700),
+		ip_dest_bigram(c,682)
 	]).
 
 run:-

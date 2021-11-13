@@ -25,6 +25,7 @@
 :-include('35-mirai.txt').
 :-include('39-ircbot.txt').
 :-include('42-trojan.txt').
+:-include('43-mirai.txt').
 :-include('48-mirai.txt').
 :-include('49-mirai.txt').
 :-include('60-gagfyt.txt').
@@ -39,6 +40,7 @@ bases_conhecimento([
 		'35-mirai.txt',
 		'39-ircbot.txt',
 		'42-trojan.txt',
+		'43-mirai.txt',
 		'48-mirai.txt',
 		'49-mirai.txt',
 		'60-gagfyt.txt'
@@ -105,6 +107,17 @@ hipoteses([
 	% 42
 	hipotese(_,missed_bytes_g730),
 	hipotese(_,missed_bytes_le730),
+	
+	% 43
+	hipotese(_, id_orig_p_g30647),
+	hipotese(_, id_orig_p_le30647),
+	hipotese(_, id_orig_p_g30647_duration_g3),
+	hipotese(_, id_orig_p_g30647_duration_le3),
+	hipotese(_, id_orig_p_g30647_duration_le3_conn_state_iRSTO_S0),
+	hipotese(_, id_orig_p_g30647_duration_le3_conn_state_niRSTO_S0),
+	hipotese(_, id_orig_p_g30647_duration_le3_conn_state_iRSTO_S0_orig_bytes_le19),
+	hipotese(_, id_orig_p_g30647_duration_le3_conn_state_niRSTO_S0_duration_g1),
+	hipotese(_, id_orig_p_g30647_duration_le3_conn_state_niRSTO_S0_duration_le1),
 
 	% 48
 	hipotese(_,resp_pkts_le304),

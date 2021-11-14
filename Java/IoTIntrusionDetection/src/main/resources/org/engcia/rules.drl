@@ -245,7 +245,74 @@ end
 
 // -----------------------------   9 - Hajime
 
+rule "hjm1"
+	when
+		eval(answer(Evidence.RESP_PKTS, ">", 33))
+	then
+		Conclusion c = new Conclusion(Conclusion.HAJIME, 100.00);
+		insert(c);
+end
 
+rule "hjm2"
+	when
+		eval(answer(Evidence.RESP_PKTS, "<=", 33))
+	then
+		Hypothesis h = new Hypothesis ("RESP_PKTS_le33");
+		insert(h);
+end
+
+rule "hjm3"
+	when
+		Hypothesis(description == "RESP_PKTS_le33")
+		eval(answer(Evidence.RESP_PKTS, ">", 3))
+	then
+		Hypothesis h = new Hypothesis ("RESP_PKTS_le33_RESP_PKTS_g3");
+		insert(h);
+end
+
+rule "hjm4"
+	when
+		eval(answer(Evidence.RESP_PKTS, "<=", 3))
+	then
+		Hypothesis h = new Hypothesis ("RESP_PKTS_le3");
+		insert(h);
+end
+
+rule "hjm5"
+	when
+		Hypothesis(description == "RESP_PKTS_le3")
+		eval(answer(Evidence.CONN_STATE, "SF"))
+	then
+		Conclusion c = new Conclusion(Conclusion.HAJIME, 14.49);
+		insert(c);
+end
+
+rule "hjm6"
+	when
+		Hypothesis(description == "RESP_PKTS_le3")
+		not(eval(answer(Evidence.CONN_STATE, "SF")))
+	then
+		Conclusion c = new Conclusion(Conclusion.HAJIME, 0.00);
+		insert(c);
+end
+
+rule "hjm7"
+	when
+		Hypothesis(description == "RESP_PKTS_le33_RESP_PKTS_g3")
+		eval(answer(Evidence.ID_RESP_P, "<=", 22))
+	then
+		Conclusion c = new Conclusion(Conclusion.HAJIME, 91.66);
+		insert(c);
+end
+
+rule "hjm8"
+	when
+		Hypothesis(description == "RESP_PKTS_le33_RESP_PKTS_g3")
+		eval(answer(Evidence.ID_RESP_P, ">", 22))
+	then
+		Conclusion c = new Conclusion(Conclusion.HAJIME, 0.03);
+		insert(c);
+end
 
 // -----------------------------   17 - Kenjiro
 

@@ -7,135 +7,135 @@ rule "mtk_1"
 end
 
 rule "mtk_2"
-	when 
-		eval(answer(ID_RESP_P, ">=", 1265))
-	then 
+	when
+		eval(answer(Evidence.ID_RESP_P, "<=", 1265))
+	then
 		Hypothesis h = new Hypothesis ("ID_RESP_P_le1265");
 		insert(h);
 end
 
-rule "mtk_3" 
-	when 
+rule "mtk_3"
+	when
 		Hypothesis(description == "ID_RESP_P_le1265")
 		eval(answer(Evidence.ORIG_BYTES, ">", 1172))
-	then 
+	then
 		Hypothesis h = new Hypothesis ("ID_RESP_P_le1265_ORIG_BYTES_g1172");
 		insert(h);
 end
 
 rule "mtk_4"
-	when 
+	when
 		Hypothesis(description == "ID_RESP_P_le1265_ORIG_BYTES_g1172")
-		eval(answer(Evidence.ORIG_OKTS, "<=", 19))
-	then 
-		Conclusion c = new Conclusion(Conclusion.MUSHTIK, 40.05);
+		eval(answer(Evidence.ORIG_PKTS, "<=", 19))
+	then
+		Conclusion c = new Conclusion(Conclusion.MUHSTIK, 40.05);
 		insert(c);
 end
 
 rule "mtk_5"
-	when 
+	when
 		Hypothesis(description == "ID_RESP_P_le1265_ORIG_BYTES_g1172")
-		eval(answer(Evidence.ORIG_OKTS, ">", 19))
-	then 
-		Hypothesis h = new Hypothesis ("ID_RESP_P_le1265_ORIG_BYTES_g1172_ORIG_OKTS_g19");
+		eval(answer(Evidence.ORIG_PKTS, ">", 19))
+	then
+		Hypothesis h = new Hypothesis ("ID_RESP_P_le1265_ORIG_BYTES_g1172_ORIG_PKTS_g19");
 		insert(h);
 end
 
 rule "mtk_6"
-	when 
-		Hypothesis(description == "ID_RESP_P_le1265_ORIG_BYTES_g1172_ORIG_OKTS_g19")
+	when
+		Hypothesis(description == "ID_RESP_P_le1265_ORIG_BYTES_g1172_ORIG_PKTS_g19")
 		eval(answer(Evidence.ORIG_BYTES, ">", 1866))
-	then 
-		Conclusion c = new Conclusion(Conclusion.MUSHTIK, 0.00);
+	then
+		Conclusion c = new Conclusion(Conclusion.MUHSTIK, 0.00);
 		insert(c);
 end
 
 rule "mtk_7"
-	when 
-		Hypothesis(description == "ID_RESP_P_le1265_ORIG_BYTES_g1172_ORIG_OKTS_g19")
-		eval(answer(Evidence.ORIG_BYTES ">=", 1866))
-	then 
-		Conclusion c = new Conclusion(Conclusion.MUSHTIK, 20.49);
+	when
+		Hypothesis(description == "ID_RESP_P_le1265_ORIG_BYTES_g1172_ORIG_PKTS_g19")
+		eval(answer(Evidence.ORIG_BYTES, "<=", 1866))
+	then
+		Conclusion c = new Conclusion(Conclusion.MUHSTIK, 20.49);
 		insert(c);
 end
 
 rule "mtk_8"
-	when 
+	when
 		Hypothesis(description == "ID_RESP_P_le1265")
-		eval(answer(ORIG_BYTES, ">=", 1172))
-	then 
+		eval(answer(Evidence.ORIG_BYTES, "<=", 1172))
+	then
 		Hypothesis h = new Hypothesis("ID_RESP_P_le1265_ORIG_BYTES_le1172");
 		insert(h);
 end
 
 rule "mtk_9"
-	when 
+	when
 		Hypothesis(description == "ID_RESP_P_le1265_ORIG_BYTES_le1172")
-		eval(answer(Evidence.ORIG_OKTS ">", 18.5))
-	then 
-		Hypothesis h = new Hypothesis("ID_RESP_P_le1265_ORIG_BYTES_le1172_ORIG_OKTS_g18");
+		eval(answer(Evidence.ORIG_PKTS, ">", 18))
+	then
+		Hypothesis h = new Hypothesis("ID_RESP_P_le1265_ORIG_BYTES_le1172_ORIG_PKTS_g18");
 		insert(h);
 end
 
 rule "mtk_10"
-	when 
-		Hypothesis(description == "ID_RESP_P_le1265_ORIG_BYTES_le1172_ORIG_OKTS_g18")
-		eval(answer(Evidence.ORIG_BYTES, ">=", 487))
-	then 
-		Conclusion c = new Conclusion(Conclusion.MUSHTIK, 14.11);
+	when
+		Hypothesis(description == "ID_RESP_P_le1265_ORIG_BYTES_le1172_ORIG_PKTS_g18")
+		eval(answer(Evidence.ORIG_BYTES, "<=", 487))
+	then
+		Conclusion c = new Conclusion(Conclusion.MUHSTIK, 14.11);
 		insert(c);
 end
 
 rule "mtk_11"
-	when 
-		Hypothesis(description == "ID_RESP_P_le1265_ORIG_BYTES_le1172_ORIG_OKTS_g18")
+	when
+		Hypothesis(description == "ID_RESP_P_le1265_ORIG_BYTES_le1172_ORIG_PKTS_g18")
 		eval(answer(Evidence.ORIG_BYTES, ">", 487))
-	then 
-		Hypothesis h = new Hypothesis("ID_RESP_P_le1265_ORIG_BYTES_le1172_ORIG_OKTS_g18_ORIG_BYTES_g487");
+	then
+		Hypothesis h = new Hypothesis("ID_RESP_P_le1265_ORIG_BYTES_le1172_ORIG_PKTS_g18_ORIG_BYTES_g487");
 		insert(h);
 end
 
 rule "mtk_12"
-	when 
-		Hypothesis(description == "ID_RESP_P_le1265_ORIG_BYTES_le1172_ORIG_OKTS_g18_ORIG_BYTES_g487")
+	when
+		Hypothesis(description == "ID_RESP_P_le1265_ORIG_BYTES_le1172_ORIG_PKTS_g18_ORIG_BYTES_g487")
 		eval(answer(Evidence.RESP_PKTS, ">", 12))
-	then 
-		Conclusion c = new Conclusion(Conclusion.MUSHTIK, 0.00);
+	then
+		Conclusion c = new Conclusion(Conclusion.MUHSTIK, 0.00);
 		insert(c);
 end
 
 rule "mtk_13"
-	when 
-		Hypothesis(description == "ID_RESP_P_le1265_ORIG_BYTES_le1172_ORIG_OKTS_g18_ORIG_BYTES_g487")
-		eval(answer(Evidence.RESP_PKTS, ">=", 12))
-	then 
-		Conclusion c = new Conclusion(Conclusion.MUSHTIK, 9.23);
+	when
+		Hypothesis(description == "ID_RESP_P_le1265_ORIG_BYTES_le1172_ORIG_PKTS_g18_ORIG_BYTES_g487")
+		eval(answer(Evidence.RESP_PKTS, "<=", 12))
+	then
+		Conclusion c = new Conclusion(Conclusion.MUHSTIK, 9.23);
 		insert(c);
 end
 
-rule "mtk_14" 
-	when 
+rule "mtk_14"
+	when
 		Hypothesis(description == "ID_RESP_P_le1265_ORIG_BYTES_le1172")
-		eval(answer(Evidence.ORIG_OKTS, ">=", 18.5))
-	then 
-		Hypothesis h = new Hypothesis("ID_RESP_P_le1265_ORIG_BYTES_le1172_ORIG_OKTS_le18");
+		eval(answer(Evidence.ORIG_PKTS, "<=", 18))
+	then
+		Hypothesis h = new Hypothesis("ID_RESP_P_le1265_ORIG_BYTES_le1172_ORIG_PKTS_le18");
 		insert(h);
 end
 
 rule "mtk_15"
-	when 
-		Hypothesis(description == "ID_RESP_P_le1265_ORIG_BYTES_le1172_ORIG_OKTS_le18")
-		eval(answer(Evidence.DURATION, ">=", 4.9143))
-	then 
-		Conclusion c = new Conclusion(Conclusion.MUSHTIK, 0.02);
+	when
+		Hypothesis(description == "ID_RESP_P_le1265_ORIG_BYTES_le1172_ORIG_PKTS_le18")
+		eval(answer(Evidence.DURATION, "<=", 4.9143))
+	then
+		Conclusion c = new Conclusion(Conclusion.MUHSTIK, 0.02);
 		insert(c);
 end
 
 rule "mtk_16"
-	when 
-		Hypothesis(description == "ID_RESP_P_le1265_ORIG_BYTES_le1172_ORIG_OKTS_le18")
+	when
+		Hypothesis(description == "ID_RESP_P_le1265_ORIG_BYTES_le1172_ORIG_PKTS_le18")
 		eval(answer(Evidence.DURATION, ">", 4.9143))
-	then 
-		Conclusion c = new Conclusion(Conclusion.MUSHTIK, 0.48);
+	then
+		Conclusion c = new Conclusion(Conclusion.MUHSTIK, 0.48);
 		insert(c);
 end

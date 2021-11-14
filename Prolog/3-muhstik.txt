@@ -31,7 +31,7 @@ regra mtk_8
 	entao [cria_facto(hipotese(Con, id_resp_p_le1265_orig_bytes_le1172))].
 
 regra mtk_9
-	se [hipotese(Con, id_resp_p_le1265_orig_bytes_le1172) e avalia(orig_pkts(Con, >, 18.5))]
+	se [hipotese(Con, id_resp_p_le1265_orig_bytes_le1172) e avalia(orig_pkts(Con, >, 18))]
 	entao [cria_facto(hipotese(Con, id_resp_p_le1265_orig_bytes_le1172_orig_pkts_g18))].
 
 regra mtk_10
@@ -51,7 +51,7 @@ regra mtk_13
 	entao [cria_facto(muhstik(Con, 9.23))].
 
 regra mtk_14 
-	se [hipotese(Con, id_resp_p_le1265_orig_bytes_le1172) e avalia(orig_pkts(Con, =<, 18.5))]
+	se [hipotese(Con, id_resp_p_le1265_orig_bytes_le1172) e avalia(orig_pkts(Con, =<, 18))]
 	entao [cria_facto(hipotese(Con, id_resp_p_le1265_orig_bytes_le1172_orig_pkts_le18))].
 
 regra mtk_15

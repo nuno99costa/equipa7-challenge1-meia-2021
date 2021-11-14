@@ -1,0 +1,23 @@
+regra mhstk1_1
+	se [avalia(id_resp_p(Con, >, 1265))]
+	entao [cria_facto(muhstik(Con, 99.73))].
+
+regra mhstk1_2
+	se [avalia(id_resp_p(Con, <=, 1265))]
+	entao [cria_facto(hipotese(Con, id_resp_p_le1265))].
+
+regra mhstk1_3
+	se [hipotese(Con, id_resp_p_le1265) e avalia(orig_bytes(Con, >, 1172))]
+	entao [cria_facto(muhstik(Con, 23.15))].
+
+regra mhstk1_4
+	se [hipotese(Con, id_resp_p_le1265) e avalia(orig_bytes(Con, <=, 1172))]
+	entao [cria_facto(hipotese(Con, orig_bytes_le1172_id_resp_p_le1265))].
+
+regra mhstk1_5
+	se [hipotese(Con, orig_bytes_le1172_id_resp_p_le1265) e avalia(orig_pkts(Con, <=, 18.5))]
+	entao [cria_facto(muhstik(Con, 0.04))].
+
+regra mhstk1_6
+	se [hipotese(Con, orig_bytes_le1172_id_resp_p_le1265) e avalia(orig_pkts(Con, >, 18.5))]
+	entao [cria_facto(muhstik(Con, 6.10))].

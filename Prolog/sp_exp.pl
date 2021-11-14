@@ -16,6 +16,7 @@
 :-dynamic valores/1.
 
 :-include('1-hideandseek.txt').
+:-include('3-muhstik.txt').
 :-include('9-hajime.txt').
 :-include('17-kenjiro.txt').
 :-include('20-torii.txt'). 
@@ -32,6 +33,7 @@
 
 bases_conhecimento([
 		'1-hideandseek.txt',
+		'3-muhstik.txt',
 		'9-hajime.txt',
 		'17-kenjiro.txt',
 		'20-torii.txt',
@@ -69,6 +71,15 @@ hipoteses([
 	hipotese(_,orig_pkts_le11_resp_pkts_le2),
 	hipotese(_,orig_pkts_le11_resp_pkts_le2_conn_state_niS2),
 
+	% 7 
+	hipotese(_,id_resp_p_le1265),
+	hipotese(_,id_resp_p_le1265_orig_bytes_le1172),
+	hipotese(_,id_resp_p_le1265_orig_bytes_g1172),
+	hipotese(_,id_resp_p_le1265_orig_bytes_g1172_orig_pkts_g19),
+	hipotese(_,id_resp_p_le1265_orig_bytes_le1172_orig_pkts_g18),
+	hipotese(_,id_resp_p_le1265_orig_bytes_le1172_orig_pkts_g18_orig_bytes_g487),
+	hipotese(_,id_resp_p_le1265_orig_bytes_le1172_orig_pkts_le18),
+	
 	% 9
 	hipotese(_,resp_pkts_le33),
 	hipotese(_,resp_pkts_le33_resp_pkts_g3),
@@ -150,22 +161,23 @@ virus([
 		('Torii', torii),
 		('IRCBot', ircbot),
 		('Mirai', mirai),
+		('Muhstik', muhstik),
 		('Gagfyt', gagfyt)
 	]).
 
 valores([
 		conn_state(c,'S1'),
-		duration(c,4),
+		duration(c,5),
 		history(c,4),
 		id_orig_p(c,3332233),
 		id_resp_p(c,3),
 		missed_bytes(c,6666),
-		orig_bytes(c,150),
+		orig_bytes(c,12100),
 		orig_ip_bytes(c,42222222222),
-		orig_pkts(c,12312312312),	
+		orig_pkts(c,22),	
 		resp_bytes(c,1800),
 		resp_ip_bytes(c,64),	
-		resp_pkts(c,2422),
+		resp_pkts(c,1),
 		service(c,'http')
 	]).
 

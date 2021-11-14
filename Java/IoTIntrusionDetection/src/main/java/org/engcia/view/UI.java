@@ -118,6 +118,10 @@ public class UI {
                 return value1 < value2;
             case "<=":
                 return value1 <= value2;
+            case "==":
+                return value1 == value2;
+            case "!=":
+                return value1 != value2;
             default:
                 return false;
         }

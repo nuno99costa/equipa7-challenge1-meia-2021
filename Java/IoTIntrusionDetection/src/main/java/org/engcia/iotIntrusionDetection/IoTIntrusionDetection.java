@@ -51,11 +51,11 @@ public class IoTIntrusionDetection {
                     System.out.println(">>>" + conclusion.toString());
 
                     //System.out.println(Haemorrhage.justifications);
-                    How how = new How(IoTIntrusionDetection.justifications);
-                    System.out.println(how.getHowExplanation(conclusion.getId()));
+                    //How how = new How(IoTIntrusionDetection.justifications);
+                    //System.out.println(how.getHowExplanation(conclusion.getId()));
 
                     // stop inference engine after as soon as got a conclusion
-                    kSession.halt();
+                    // kSession.halt();
 
                 }
 

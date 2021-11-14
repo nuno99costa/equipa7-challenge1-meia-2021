@@ -1,48 +1,52 @@
 regra gft_1
-	se [avalia(orig_ip_bytes(Con, =<, 390632233))]
-	entao [cria_facto(hipotese(Con, orig_ip_bytes_le390632233))].
+	se 
+		[avalia(orig_ip_bytes(Con, >, 390632233)) e 
+		avalia(orig_pkts(Con, >, 19684999)) e 
+		avalia(id_orig_p(Con, >, 50420))]
+	entao 
+		[cria_facto(gagfyt(Con, 4.41))]. 
 
 regra gft_2
-	se [avalia(orig_ip_bytes(Con, >, 390632233))]
-	entao [cria_facto(hipotese(Con, orig_ip_bytes_g390632233))]. 
+	se 
+		[avalia(orig_ip_bytes(Con, >, 390632233)) e 
+		avalia(orig_pkts(Con, >, 19684999)) e 
+		avalia(id_orig_p(Con, =<, 50420))]
+	entao 
+		[cria_facto(gagfyt(Con, 14.08))]. 
 
 regra gft_3
-	se [hipotese(Con, orig_ip_bytes_le390632233) e avalia(orig_ip_bytes(Con, >, 125909890))]
-	entao [cria_facto(gagfyt(Con, 8.34))]. 
+	se 
+		[avalia(orig_ip_bytes(Con, >, 390632233)) e 
+		avalia(orig_pkts(Con, =<, 19684999))]
+	entao 
+		[cria_facto(gagfyt(Con, 46.28))]. 
 
 regra gft_4
-	se [hipotese(Con, orig_ip_bytes_le390632233) e avalia(orig_ip_bytes(Con, =<, 125909890))]
-	entao [cria_facto(hipotese(Con, orig_ip_bytes_le390632233_orig_ip_bytes_le125909890))]. 
+	se 
+		[avalia(orig_ip_bytes(Con, =<, 390632233)) e 
+		avalia(orig_ip_bytes(Con, >, 125909890))]
+	entao 
+		[cria_facto(gagfyt(Con, 8.34))]. 
 
 regra gft_5
-	se [hipotese(Con, orig_ip_bytes_g390632233) e avalia(orig_pkts(Con, =<, 19684999))]
-	entao [cria_facto(gagfyt(Con, 46.28))].
+	se 
+		[avalia(orig_ip_bytes(Con, =<, 125909890)) e 
+		avalia(id_resp_p(Con, >, 55610)) e 
+		avalia(id_orig_p(Con, >, 22184))]
+	entao 
+		[cria_facto(gagfyt(Con, 0.34))]. 
 
 regra gft_6
-	se [hipotese(Con, orig_ip_bytes_g390632233) e avalia(orig_pkts(Con, >, 19684999))]
-	entao [cria_facto(hipotese(Con, orig_ip_bytes_g390632233_orig_pkts_g125909890))].
-	
-regra gft_7
-	se [hipotese(Con, orig_ip_bytes_le390632233_orig_ip_bytes_le125909890) e avalia(id_resp_p(Con, >, 55610))]
-	entao [cria_facto(hipotese(Con, orig_ip_bytes_le390632233_orig_ip_bytes_le125909890_id_resp_p_g55610))].
-	
-regra gft_8
-	se [hipotese(Con, orig_ip_bytes_le390632233_orig_ip_bytes_le125909890) e avalia(id_resp_p(Con, =<, 55610))]
-	entao [cria_facto(gagfyt(Con, 0.01))].
+	se 
+		[avalia(orig_ip_bytes(Con, =<, 125909890)) e 
+		avalia(id_resp_p(Con, >, 55610)) e 
+		avalia(id_orig_p(Con, =<, 22184))]
+	entao 
+		[cria_facto(gagfyt(Con, 0.67))]. 
 
-regra gft_9
-	se [hipotese(Con, orig_ip_bytes_g390632233_orig_pkts_g125909890) e avalia(id_orig_p(Con, =<, 50320))]
-	entao [cria_facto(gagfyt(Con, 14.08))].
-	
-regra gft_10
-	se [hipotese(Con, orig_ip_bytes_g390632233_orig_pkts_g125909890) e avalia(id_orig_p(Con, >, 50320))]
-	entao [cria_facto(gagfyt(Con, 4.41))].
-	
-regra gft_11
-	se [hipotese(Con, orig_ip_bytes_le390632233_orig_ip_bytes_le125909890_id_resp_p_g55610) e avalia(id_orig_p(Con, =<, 22184))]
-	entao [cria_facto(gagfyt(Con, 0.67))].
-	
-regra gft_12
-	se [hipotese(Con, orig_ip_bytes_le390632233_orig_ip_bytes_le125909890_id_resp_p_g55610) e avalia(id_orig_p(Con, >, 22184))]
-	entao [cria_facto(gagfyt(Con, 0.34))].
-	
+regra gft_7
+	se 
+		[avalia(orig_ip_bytes(Con, =<, 125909890)) e 
+		avalia(id_resp_p(Con, =<, 55610))]
+	entao 
+		[cria_facto(gagfyt(Con, 0.01))]. 

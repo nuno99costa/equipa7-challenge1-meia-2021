@@ -1,47 +1,58 @@
 regra kjr1_1
-	se [avalia(id_resp_p(Con, >, 45042))]
-	entao [cria_facto(kenjiro(Con, 29.60))].
+	se 
+		[avalia(id_resp_p(Con, >, 45042))]
+	entao 
+		[cria_facto(kenjiro(Con, 29.60))].
 
 regra kjr1_2
-	se [avalia(id_resp_p(Con, =<, 45042))]
-	entao [cria_facto(hipotese(Con, id_resp_p_le45042))].
+	se 
+		[avalia(id_resp_p(Con, =<, 45042)) e
+		membro(service(Con, ['http'])) e 
+		avalia(history(Con, =<, 8))]
+	entao 
+		[cria_facto(kenjiro(Con, 69.26))].
 
 regra kjr1_3
-	se [hipotese(Con, id_resp_p_le45042) e membro(service(Con, ['http']))]
-	entao [cria_facto(hipotese(Con, id_resp_p_le45042_service_inhttp))].
+	se 
+		[avalia(id_resp_p(Con, =<, 45042)) e
+		membro(service(Con, ['http'])) e 
+		avalia(history(Con, >, 8))]
+	entao 
+		[cria_facto(kenjiro(Con, 7.55))].
 
 regra kjr1_4
-	se [hipotese(Con, id_resp_p_le45042) e nao membro(service(Con, ['http']))]
-	entao [cria_facto(hipotese(Con, id_resp_p_le45042_service_nihttp))].
+	se 
+		[avalia(id_resp_p(Con, =<, 45042)) e
+		nao membro(service(Con, ['http'])) e 
+		avalia(orig_pkts(Con, >, 30))]
+	entao 
+		[cria_facto(kenjiro(Con, 18.98))].
 
 regra kjr1_5
-	se [hipotese(Con, id_resp_p_le45042_service_inhttp) e avalia(history(Con, >, 8))]
-	entao [cria_facto(kenjiro(Con, 7.55))].
+	se 
+		[avalia(id_resp_p(Con, =<, 45042)) e
+		nao membro(service(Con, ['http'])) e 
+		avalia(orig_pkts(Con, =<, 30)) e 
+		avalia(orig_ip_bytes(Con, =<, 348))]
+	entao 
+		[cria_facto(kenjiro(Con, 0.04))].
 
 regra kjr1_6
-	se [hipotese(Con, id_resp_p_le45042_service_inhttp) e avalia(history(Con, =<, 8))]
-	entao [cria_facto(kenjiro(Con, 69.26))].
+	se 
+		[avalia(id_resp_p(Con, =<, 45042)) e
+		nao membro(service(Con, ['http'])) e 
+		avalia(orig_pkts(Con, =<, 30)) e 
+		avalia(orig_ip_bytes(Con, >, 348)) e
+		avalia(history(Con, >, 4))]
+	entao 
+		[cria_facto(kenjiro(Con, 31.02))].
 
 regra kjr1_7
-	se [hipotese(Con, id_resp_p_le45042_service_nihttp) e avalia(orig_pkts(Con, =<, 30))]
-	entao [cria_facto(hipotese(Con, id_resp_p_le45042_service_nihttp_orig_pkts_le30))].
-
-regra kjr1_8
-	se [hipotese(Con, id_resp_p_le45042_service_nihttp) e avalia(orig_pkts(Con, >, 30))]
-	entao [cria_facto(kenjiro(Con, 18.98))].
-
-regra kjr1_9
-	se [hipotese(Con, id_resp_p_le45042_service_nihttp_orig_pkts_le30) e avalia(orig_ip_bytes(Con, =<, 348))]
-	entao [cria_facto(kenjiro(Con, 0.04))].
-
-regra kjr1_10
-	se [hipotese(Con, id_resp_p_le45042_service_nihttp_orig_pkts_le30) e avalia(orig_ip_bytes(Con, >, 348))]
-	entao [cria_facto(hipotese(Con, id_resp_p_le45042_service_nihttp_orig_pkts_le30_orig_ip_bytes_g348))].
-
-regra kjr1_10
-	se [hipotese(Con, id_resp_p_le45042_service_nihttp_orig_pkts_le30_orig_ip_bytes_g348) e avalia(history(Con, >, 4))]
-	entao [cria_facto(kenjiro(Con, 31.02))].
-
-regra kjr1_11
-	se [hipotese(Con, id_resp_p_le45042_service_nihttp_orig_pkts_le30_orig_ip_bytes_g348) e avalia(history(Con, =<, 4))]
-	entao [cria_facto(kenjiro(Con, 0.72))].
+	se 
+		[avalia(id_resp_p(Con, =<, 45042)) e
+		nao membro(service(Con, ['http'])) e 
+		avalia(orig_pkts(Con, =<, 30)) e 
+		avalia(orig_ip_bytes(Con, >, 348)) e
+		avalia(history(Con, =<, 4))]
+	entao 
+		[cria_facto(kenjiro(Con, 0.72))].

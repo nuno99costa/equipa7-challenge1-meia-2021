@@ -1,32 +1,38 @@
 regra hns1
-	se [avalia(orig_pkts(Con, >, 11.5))]
-	entao [cria_facto(hide_and_seek(Con, 100.00))].
+	se 
+		[avalia(orig_pkts(Con, >, 11))]
+	entao 
+		[cria_facto(hide_and_seek(Con, 100.00))].
 
 regra hns2
-	se [avalia(orig_pkts(Con, =<, 11.5))]
-	entao [cria_facto(hipotese(Con, orig_pkts_le11))].
+	se 
+		[avalia(orig_pkts(Con, =<, 11)) e
+		avalia(resp_pkts(Con, >, 2))]
+	entao 
+		[cria_facto(hide_and_seek(Con, 15.43))].
 
 regra hns3
-	se [hipotese(Con, orig_pkts_le11) e avalia(resp_pkts(Con, >, 2))]
-	entao [cria_facto(hide_and_seek(Con, 15.43))].
+	se 
+		[avalia(orig_pkts(Con, =<, 11)) e
+		avalia(resp_pkts(Con, =<, 2)) e
+		membro(conn_state(Con, ['S2']))]
+	entao 
+		[cria_facto(hide_and_seek(Con, 13.69))].
 
 regra hns4
-	se [hipotese(Con, orig_pkts_le11) e avalia(resp_pkts(Con, =<, 2))]
-	entao [cria_facto(hipotese(Con, orig_pkts_le11_resp_pkts_le2))].
+	se 
+		[avalia(orig_pkts(Con, =<, 11)) e
+		avalia(resp_pkts(Con, =<, 2)) e
+		nao membro(conn_state(Con, ['S2'])) e
+		avalia(history(Con, >, 38))]
+	entao 
+		[cria_facto(hide_and_seek(Con, 1.27))].
 
 regra hns5
-	se [hipotese(Con, orig_pkts_le11_resp_pkts_le2) e membro(conn_state(Con, ['S2']))]
-	entao [cria_facto(hide_and_seek(Con, 13.69))].
-
-regra hns6
-	se [hipotese(Con, orig_pkts_le11_resp_pkts_le2) e nao membro(conn_state(Con, ['S2']))]
-	entao [cria_facto(hipotese(Con, orig_pkts_le11_resp_pkts_le2_conn_state_niS2))].
-
-regra hns7
-	se [hipotese(Con, orig_pkts_le11_resp_pkts_le2_conn_state_niS2) e avalia(history(Con, >, 38.5))]
-	entao [cria_facto(hide_and_seek(Con, 1.27))]. 
-
-regra hns8
-	se [hipotese(Con, orig_pkts_le11_resp_pkts_le2_conn_state_niS2) e avalia(history(Con, =<, 38.5))]
-	entao [cria_facto(hide_and_seek(Con, 0.00))].
-
+	se 
+		[avalia(orig_pkts(Con, =<, 11)) e
+		avalia(resp_pkts(Con, =<, 2)) e
+		nao membro(conn_state(Con, ['S2'])) e
+		avalia(history(Con, =<, 38))]
+	entao 
+		[cria_facto(hide_and_seek(Con, 0))].

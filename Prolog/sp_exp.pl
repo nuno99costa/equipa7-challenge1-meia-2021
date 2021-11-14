@@ -16,7 +16,7 @@
 :-dynamic valores/1.
 
 :-include('1-hideandseek.txt').
-:-include('3-muhstik.txt').
+:-include('3-muhstik.txt'). 
 :-include('9-hajime.txt').
 :-include('17-kenjiro.txt').
 :-include('20-torii.txt'). 
@@ -30,26 +30,7 @@
 :-include('48-mirai.txt').
 :-include('49-mirai.txt').
 :-include('52-mirai.txt').
-:-include('60-gagfyt.txt'). 
-
-bases_conhecimento([
-		'1-hideandseek.txt',
-		'3-muhstik.txt',
-		'9-hajime.txt',
-		'17-kenjiro.txt',
-		'20-torii.txt',
-		'21-torii.txt',
-		'33-kenjiro.txt',
-		'34-mirai.txt',
-		'35-mirai.txt',
-		'39-ircbot.txt',
-		'42-trojan.txt',
-		'43-mirai.txt',
-		'48-mirai.txt',
-		'49-mirai.txt',
-		'52-mirai.txt',
-		'60-gagfyt.txt'
-	]).
+:-include('60-gagfyt.txt').
 
 evidencias([
 		orig_pkts(_,_),
@@ -67,101 +48,6 @@ evidencias([
 		resp_ip_bytes(_,_)
 	]).
 
-hipoteses([
-	% 1
-	hipotese(_,orig_pkts_le11),
-	hipotese(_,orig_pkts_le11_resp_pkts_le2),
-	hipotese(_,orig_pkts_le11_resp_pkts_le2_conn_state_niS2),
-
-	% 7 
-	hipotese(_,id_resp_p_le1265),
-	hipotese(_,id_resp_p_le1265_orig_bytes_le1172),
-	hipotese(_,id_resp_p_le1265_orig_bytes_g1172),
-	hipotese(_,id_resp_p_le1265_orig_bytes_g1172_orig_pkts_g19),
-	hipotese(_,id_resp_p_le1265_orig_bytes_le1172_orig_pkts_g18),
-	hipotese(_,id_resp_p_le1265_orig_bytes_le1172_orig_pkts_g18_orig_bytes_g487),
-	hipotese(_,id_resp_p_le1265_orig_bytes_le1172_orig_pkts_le18),
-	
-	% 9
-	hipotese(_,resp_pkts_le33),
-	hipotese(_,resp_pkts_le33_resp_pkts_g3),
-	hipotese(_,resp_pkts_le3),
-
-	% 17
-	hipotese(_,id_resp_p_le45042),
-	hipotese(_,id_resp_p_le45042_service_inhttp),
-	hipotese(_,id_resp_p_le45042_service_nihttp),
-	hipotese(_,id_resp_p_le45042_service_nihttp_orig_pkts_le30),
-	hipotese(_,id_resp_p_le45042_service_nihttp_orig_pkts_le30_orig_ip_bytes_g348),
-	
-	% 20
-	hipotese(_, conn_state_niS2),
-	
-	% 21
-	hipotese(_, orig_bytes_g7975),
-	hipotese(_, orig_bytes_g7975_history_le5),
-
-	% 33
-	hipotese(_,id_resp_p_g22648),
-	hipotese(_,id_resp_p_g22648_id_orig_p_g39624),
-	hipotese(_,id_resp_p_le8080_id_resp_p_g101),
-	hipotese(_,id_resp_p_le101),
-	hipotese(_,id_resp_p_le8080_id_resp_p_g101_orig_pkts_le4),
-
-	% 34
-	hipotese(_, id_resp_p_g3461),
-	hipotese(_, id_resp_p_g3461_resp_ip_bytes_g63),
-	
-	% 35
-	hipotese(_,history_g9),
-	hipotese(_,history_le9),
-	hipotese(_,history_le9_id_resp_p_g66),
-	
-	% 39
-	hipotese(_,orig_bytes_g94),
-	hipotese(_,orig_bytes_g94_orig_bytes_le114),
-
-	% 42
-	hipotese(_,missed_bytes_g730),
-	hipotese(_,missed_bytes_le730),
-	
-	% 43
-	hipotese(_, id_orig_p_g30647),
-	hipotese(_, id_orig_p_le30647),
-	hipotese(_, id_orig_p_g30647_duration_g3),
-	hipotese(_, id_orig_p_g30647_duration_le3),
-	hipotese(_, id_orig_p_g30647_duration_le3_conn_state_iRSTO_S0),
-	hipotese(_, id_orig_p_g30647_duration_le3_conn_state_niRSTO_S0),
-	hipotese(_, id_orig_p_g30647_duration_le3_conn_state_iRSTO_S0_orig_bytes_le19),
-	hipotese(_, id_orig_p_g30647_duration_le3_conn_state_niRSTO_S0_duration_g1),
-	hipotese(_, id_orig_p_g30647_duration_le3_conn_state_niRSTO_S0_duration_le1),
-
-	% 48
-	hipotese(_,resp_pkts_le304),
-	hipotese(_,resp_pkts_le304_resp_bytes_g82355),
-	
-	% 49
-	hipotese(_, resp_bytes_g60382),
-	hipotese(_, resp_bytes_g60382_resp_bytes_le179176),
-	hipotese(_, resp_bytes_g60382_resp_bytes_le179176_resp_bytes_g132319),
-	
-	% 52
-	hipotese(_, history_g45),
-	hipotese(_, history_g45_orig_pkts_le81),
-	hipotese(_, history_g45_orig_pkts_g81),
-	hipotese(_, history_g45_orig_pkts_g81_id_orig_p_g51677),
-	hipotese(_, history_g45_orig_pkts_g81_id_orig_p_le51677),
-
-	% 60
-	hipotese(_, orig_ip_bytes_le390632233),
-	hipotese(_, orig_ip_bytes_g390632233),
-	hipotese(_, orig_ip_bytes_le390632233_orig_ip_bytes_g125909890),
-	hipotese(_, orig_ip_bytes_le390632233_orig_ip_bytes_le125909890),
-	hipotese(_, orig_ip_bytes_g390632233_orig_pkts_le125909890),
-	hipotese(_, orig_ip_bytes_g390632233_orig_pkts_g125909890),
-	hipotese(_, orig_ip_bytes_le390632233_orig_ip_bytes_le125909890_id_resp_p_g55610)
-]).
-
 virus([
 		('Hide and Seek', hide_and_seek),
 		('Trojan', trojan),
@@ -175,19 +61,19 @@ virus([
 	]).
 
 valores([
-		conn_state(c,'S1'),
-		duration(c,5),
+		conn_state(c,'RST1O'),
+		duration(c,4.2),
 		history(c,5),
 		id_orig_p(c,1),
-		id_resp_p(c,3),
-		missed_bytes(c,6666),
+		id_resp_p(c,50000),
+		missed_bytes(c,3),
 		orig_bytes(c,1),
-		orig_ip_bytes(c,42222222222),
-		orig_pkts(c,99),	
-		resp_bytes(c,1800),
-		resp_ip_bytes(c,64),	
-		resp_pkts(c,122),
-		service(c,'http'),
+		orig_ip_bytes(c,150000000222),
+		orig_pkts(c,82),	
+		resp_bytes(c,1),
+		resp_ip_bytes(c,3),	
+		resp_pkts(c,1),
+		service(c,'dnas'),
 
 		conn_state(d,'S0'),
 		duration(d,0.5),
@@ -201,7 +87,7 @@ valores([
 		resp_bytes(d,51),
 		resp_ip_bytes(d,1),	
 		resp_pkts(d,4),
-		service(d,'dns')
+		service(d,'dns') 
 	]).
 
 run:-
@@ -213,8 +99,8 @@ run:-
 carrega_bc:-
 		%write('NOME DA BASE DE CONHECIMENTO (terminar com .)-> '),
 		%read(NBC),
-		bases_conhecimento(NBCs),
-		carrega_bc(NBCs),
+		%bases_conhecimento(NBCs),
+		%carrega_bc(NBCs),
 		% ultima_regra, 
 
 		ultimo_facto,
@@ -501,9 +387,8 @@ ultima_regra:-
 
 gera_metaconhecimento:-
 	retractall(facto_dispara_regras(_,_)),	
-	evidencias(E),hipoteses(H),
-	append(E,H,L),
-	gera_metaconhecimento(L).
+	evidencias(E),
+	gera_metaconhecimento(E).
 
 gera_metaconhecimento([]).
 gera_metaconhecimento([F|LF]):-gera_metaconhecimento1(F),

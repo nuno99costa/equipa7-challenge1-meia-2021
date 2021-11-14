@@ -1,15 +1,19 @@
 regra tor2_1
-	se [membro(conn_state(Con, ['S1']))]
-	entao [cria_facto(torii(Con, 100.00))].
+	se
+		[membro(conn_state(Con, ['S1']))]
+	entao 
+		[cria_facto(torii(Con, 100.00))].
 
 regra tor2_2
-	se [nao membro(conn_state(Con, ['S1']))]
-	entao [cria_facto(hipotese(Con, conn_state_niS2))].
+	se 
+		[nao membro(conn_state(Con, ['S1'])) e 
+		avalia(orig_bytes(Con, =<, 1761))]
+	entao 
+		[cria_facto(torii(Con, 0.00))].
 
 regra tor2_3
-	se [hipotese(Con, conn_state_niS2) e avalia(orig_bytes(Con, =<, 1761))]
-	entao [cria_facto(torii(Con, 0.00))].
-
-regra tor2_4
-	se [hipotese(Con, conn_state_niS2) e avalia(orig_bytes(Con, >, 1761))]
-	entao [cria_facto(torii(Con, 43.75))].
+	se 
+		[nao membro(conn_state(Con, ['S1'])) e 
+		avalia(orig_bytes(Con, >, 1761))]
+	entao 
+		[cria_facto(torii(Con, 43.75))].

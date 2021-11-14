@@ -1,24 +1,28 @@
 regra irc1
-	se [avalia(orig_bytes(Con, =<, 94))]
-	entao [cria_facto(ircbot(Con, 0.00))].
+	se 
+		[avalia(orig_bytes(Con, =<, 94))]
+	entao 
+		[cria_facto(ircbot(Con, 0.00))].
 
 regra irc2
-	se [avalia(orig_bytes(Con, >, 94))]
-	entao [cria_facto(hipotese(Con, orig_bytes_g94))].
+	se 
+		[avalia(orig_bytes(Con, >, 94)) e 
+		avalia(orig_bytes(Con, >, 114))]
+	entao 
+		[cria_facto(ircbot(Con, 0.00))].
 
 regra irc3
-	se [hipotese(Con, orig_bytes_g94) e avalia(orig_bytes(Con, =<, 114))]
-	entao [cria_facto(hipotese(Con, orig_bytes_g94_orig_bytes_le114))].
+	se 
+		[avalia(orig_bytes(Con, >, 94)) e 
+		avalia(orig_bytes(Con, =<, 114)) e 
+		avalia(resp_bytes(Con, >, 49))]
+	entao 
+		[cria_facto(ircbot(Con, 95.59))].
 
 regra irc4
-	se [hipotese(Con, orig_bytes_g94_orig_bytes_le114) e avalia(resp_bytes(Con, >, 49))]
-	entao [cria_facto(ircbot(Con, 95.49))].
-
-regra irc5
-	se [hipotese(Con, orig_bytes_g94_orig_bytes_le114) e avalia(resp_bytes(Con, =<, 49))]
-	entao [cria_facto(ircbot(Con, 0.00))].
-
-regra irc6
-	se [avalia(orig_bytes(Con, >, 114))]
-	entao [cria_facto(ircbot(Con, 0.00))].
-
+	se 
+		[avalia(orig_bytes(Con, >, 94)) e 
+		avalia(orig_bytes(Con, =<, 114)) e 
+		avalia(resp_bytes(Con, =<, 49))]
+	entao 
+		[cria_facto(ircbot(Con, 0.00))].

@@ -1,83 +1,96 @@
 regra mra4_1
-	se [avalia(id_orig_p(Con, >, 30647))]
-	entao [cria_facto(hipotese(Con, id_orig_p_g30647))].
+	se 
+		[avalia(id_orig_p(Con, >, 30647)) e 
+		avalia(duration(Con, >, 4.1452))]
+	entao 
+		[cria_facto(mirai(Con, 42.27))].
 
 regra mra4_2
-	se [avalia(id_orig_p(Con, =<, 30647))]
-	entao [cria_facto(hipotese(Con, id_orig_p_le30647))].
+	se 
+		[avalia(id_orig_p(Con, >, 30647)) e 
+		avalia(duration(Con, >, 3.1616)) e 
+		avalia(duration(Con, =<, 4.1452))]
+	entao 
+		[cria_facto(mirai(Con, 95.57))].
 
 regra mra4_3
-	se [hipotese(Con, id_orig_p_le30647) e avalia(id_resp_p(Con, =<, 45042))]
-	entao [cria_facto(mirai(Con, 0.00))].
+	se 
+		[avalia(id_orig_p(Con, >, 30647)) e 
+		avalia(duration(Con, =<, 3.1616)) e
+		nao membro(conn_state(Con, ['RSTO', 'S0'])) e 
+		avalia(duration(Con, >, 1.0609)) e 
+		avalia(history(Con, >, 6))]
+	entao 
+		[cria_facto(mirai(Con, 23.63))].
 
 regra mra4_4
-	se [hipotese(Con, id_orig_p_le30647) e avalia(id_resp_p(Con, >, 45042))]
-	entao [cria_facto(mirai(Con, 0.83))].
+	se 
+		[avalia(id_orig_p(Con, >, 30647)) e 
+		avalia(duration(Con, =<, 3.1616)) e
+		nao membro(conn_state(Con, ['RSTO', 'S0'])) e 
+		avalia(duration(Con, >, 1.0609)) e 
+		avalia(history(Con, =<, 6))]
+	entao 
+		[cria_facto(mirai(Con, 68.89))].
 
 regra mra4_5
-	se [hipotese(Con, id_orig_p_g30647) e avalia(duration(Con, >, 3.1616))]
-	entao [cria_facto(hipotese(Con, id_orig_p_g30647_duration_g3))].
+	se 
+		[avalia(id_orig_p(Con, >, 30647)) e 
+		nao membro(conn_state(Con, ['RSTO', 'S0'])) e 
+		avalia(duration(Con, =<, 1.0609)) e 
+		avalia(id_orig_p(Con, >, 36952))]
+	entao 
+		[cria_facto(mirai(Con, 0.00))].
 
 regra mra4_6
-	se [hipotese(Con, id_orig_p_g30647) e avalia(duration(Con, =<, 3.1616))]
-	entao [cria_facto(hipotese(Con, id_orig_p_g30647_duration_le3))]. 
+	se 
+		[avalia(id_orig_p(Con, >, 30647)) e 
+		nao membro(conn_state(Con, ['RSTO', 'S0'])) e 
+		avalia(duration(Con, =<, 1.0609)) e 
+		avalia(id_orig_p(Con, =<, 36952))]
+	entao 
+		[cria_facto(mirai(Con, 23.24))].
 
 regra mra4_7
-	se [hipotese(Con, id_orig_p_g30647_duration_g3) e avalia(duration(Con, =<, 4.1452))]
-	entao [cria_facto(mirai(Con, 95.56))].
-	
-regra mra4_8
-	se [hipotese(Con, id_orig_p_g30647_duration_g3) e avalia(duration(Con, >, 4.1452))]
-	entao [cria_facto(mirai(Con, 42.72))].
-	
-regra mra4_9
-	se [hipotese(Con, id_orig_p_g30647_duration_le3) e membro(conn_state(Con, ['RSTO','S0']))]
-	entao [cria_facto(hipotese(Con, id_orig_p_g30647_duration_le3_conn_state_iRSTO_S0))].
-	
-regra mra4_10
-	se [hipotese(Con, id_orig_p_g30647_duration_le3) e nao membro(conn_state(Con, ['RSTO','S0']))]
-	entao [cria_facto(hipotese(Con, id_orig_p_g30647_duration_le3_conn_state_niRSTO_S0))].
-	
-regra mra4_11
-	se [hipotese(Con, id_orig_p_g30647_duration_le3_conn_state_iRSTO_S0) e avalia(orig_bytes(Con, =<, 19))]
-	entao [cria_facto(hipotese(Con, id_orig_p_g30647_duration_le3_conn_state_iRSTO_S0_orig_bytes_le19))].
-	
-regra mra4_12
-	se [hipotese(Con, id_orig_p_g30647_duration_le3_conn_state_iRSTO_S0) e avalia(orig_bytes(Con, >, 19))]
-	entao [cria_facto(mirai(Con, 90.25))].
-	
-regra mra4_13
-	se [hipotese(Con, id_orig_p_g30647_duration_le3_conn_state_iRSTO_S0_orig_bytes_le19) e avalia(duration(Con, >, 0.4998))]
-	entao [cria_facto(mirai(Con, 34.61))].
-	
-regra mra4_14
-	se [hipotese(Con, id_orig_p_g30647_duration_le3_conn_state_iRSTO_S0_orig_bytes_le19) e avalia(duration(Con, =<, 0.4998))]
-	entao [cria_facto(mirai(Con, 47.23))].
-	
-regra mra4_15
-	se [hipotese(Con, id_orig_p_g30647_duration_le3_conn_state_niRSTO_S0) e avalia(duration(Con, >, 1.0609))]
-	entao [cria_facto(hipotese(Con, id_orig_p_g30647_duration_le3_conn_state_niRSTO_S0_duration_g1))].
-	
-regra mra4_16
-	se [hipotese(Con, id_orig_p_g30647_duration_le3_conn_state_niRSTO_S0) e avalia(duration(Con, =<, 1.0609))]
-	entao [cria_facto(hipotese(Con, id_orig_p_g30647_duration_le3_conn_state_niRSTO_S0_duration_le1))].
-	
-regra mra4_17
-	se [hipotese(Con, id_orig_p_g30647_duration_le3_conn_state_niRSTO_S0_duration_g1) e avalia(history(Con, >, 6))]
-	entao [cria_facto(mirai(Con, 23.63))].
-	
-regra mra4_18
-	se [hipotese(Con, id_orig_p_g30647_duration_le3_conn_state_niRSTO_S0_duration_g1) e avalia(history(Con, =<, 6))]
-	entao [cria_facto(mirai(Con, 68.89))].
-	
-regra mra4_19
-	se [hipotese(Con, id_orig_p_g30647_duration_le3_conn_state_niRSTO_S0_duration_le1) e avalia(id_orig_p(Con, >, 36952))]
-	entao [cria_facto(mirai(Con, 0.00))].
-	
-regra mra4_20
-	se [hipotese(Con, id_orig_p_g30647_duration_le3_conn_state_niRSTO_S0_duration_le1) e avalia(id_orig_p(Con, =<, 36952))]
-	entao [cria_facto(mirai(Con, 23.24))].
-	
+	se 
+		[avalia(id_orig_p(Con, >, 30647)) e 
+		avalia(duration(Con, =<, 3.1616)) e
+		membro(conn_state(Con, ['RSTO', 'S0'])) e 
+		avalia(orig_bytes(Con, >, 19))]
+	entao 
+		[cria_facto(mirai(Con, 90.25))].
 
-	
-	
+regra mra4_8
+	se 
+		[avalia(id_orig_p(Con, >, 30647)) e 
+		avalia(duration(Con, =<, 3.1616)) e
+		membro(conn_state(Con, ['RSTO', 'S0'])) e 
+		avalia(orig_bytes(Con, =<, 19)) e 
+		avalia(duration(Con, >, 0.4998))]
+	entao 
+		[cria_facto(mirai(Con, 34.61))].
+
+
+regra mra4_9
+	se 
+		[avalia(id_orig_p(Con, >, 30647)) e 
+		avalia(duration(Con, =<, 3.1616)) e
+		membro(conn_state(Con, ['RSTO', 'S0'])) e 
+		avalia(orig_bytes(Con, =<, 19)) e 
+		avalia(duration(Con, =<, 0.4998))]
+	entao 
+		[cria_facto(mirai(Con, 47.23))].
+
+regra mra4_10
+	se 
+		[avalia(id_orig_p(Con, =<, 30647)) e 
+		avalia(id_resp_p(Con, >, 45042))]
+	entao 
+		[cria_facto(mirai(Con, 0.83))].
+
+regra mra4_11
+	se 
+		[avalia(id_orig_p(Con, =<, 30647)) e 
+		avalia(id_resp_p(Con, =<, 45042))]
+	entao 
+		[cria_facto(mirai(Con, 0.00))].

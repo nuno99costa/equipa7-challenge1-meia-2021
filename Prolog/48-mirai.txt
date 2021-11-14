@@ -1,27 +1,36 @@
 regra mra1_1
-	se [avalia(resp_pkts(Con, >, 304))]
-	entao [cria_facto(mirai(Con, 100))].
+	se 
+		[avalia(resp_pkts(Con, >, 304))]
+	entao 
+		[cria_facto(mirai(Con, 100))].
 
 regra mra1_2
-	se [avalia(resp_pkts(Con, =<, 304))]
-	entao [cria_facto(hipotese(Con, resp_pkts_le304))].
+	se 
+		[avalia(resp_pkts(Con, =<, 304)) e 
+		avalia(resp_bytes(Con, >, 82355)) e 
+		avalia(orig_pkts(Con, >, 138))]
+	entao 
+		[cria_facto(mirai(Con, 21.69))].
 
 regra mra1_3
-	se [hipotese(Con, resp_pkts_le304) e avalia(resp_bytes(Con, =<, 13208))]
-	entao [cria_facto(mirai(Con, 0.00))].
+	se 
+		[avalia(resp_pkts(Con, =<, 304)) e 
+		avalia(resp_bytes(Con, >, 82355)) e 
+		avalia(orig_pkts(Con, =<, 138))]
+	entao 
+		[cria_facto(mirai(Con, 14.55))].
 
 regra mra1_4
-	se [hipotese(Con, resp_pkts_le304) e avalia(resp_bytes(Con, >, 13208)) e avalia(resp_bytes(Con, =<, 82355))]
-	entao [cria_facto(mirai(Con, 9.41))].
+	se 
+		[avalia(resp_pkts(Con, =<, 304)) e 
+		avalia(resp_bytes(Con, >, 13208)) e 
+		avalia(resp_bytes(Con, =<, 82355))]
+	entao 
+		[cria_facto(mirai(Con, 9.41))].
 
 regra mra1_5
-	se [hipotese(Con, resp_pkts_le304) e avalia(resp_bytes(Con, >, 82355))]
-	entao [cria_facto(hipotese(Con, resp_pkts_le304_resp_bytes_g82355))].
-
-regra mra1_6
-	se [hipotese(Con, resp_pkts_le304_resp_bytes_g82355) e avalia(orig_pkts(Con, >, 138))]
-	entao [cria_facto(mirai(Con, 21.69))].
-
-regra mra1_7
-	se [hipotese(Con, resp_pkts_le304_resp_bytes_g82355) e avalia(orig_pkts(Con, =<, 138))]
-	entao [cria_facto(mirai(Con, 14.55))].
+	se 
+		[avalia(resp_pkts(Con, =<, 304)) e 
+		avalia(resp_bytes(Con, =<, 13208))]
+	entao 
+		[cria_facto(mirai(Con, 0.00))].

@@ -1,0 +1,51 @@
+rule "irc_1"
+	when
+		eval(answer(Evidence.ORIG_BYTES, ">", 94))
+	then
+		Hypothesis h = new Hypothesis("ORIG_BYTES_g94");
+		insert(h);
+end
+
+rule "irc_2"
+	when
+		eval(answer(Evidence.ORIG_BYTES, "<=", 94))
+	then
+		Conclusion c = new Conclusion(Conclusion.IRCBOT, 0.00);
+		insert(c);
+end
+
+rule "irc_3"
+	when
+		Hypothesis( description == "ORIG_BYTES_g94")
+		eval(answer(Evidence.ORIG_BYTES, "<=", 114))
+	then
+		Hypothesis h = new Hypothesis("ORIG_BYTES_g94_ORIG_BYTES_le114");
+		insert(h);
+end
+
+rule "irc_4"
+	when
+		Hypothesis( description == "ORIG_BYTES_g94")
+		eval(answer(Evidence.ORIG_BYTES, ">", 114))
+	then
+		Conclusion c = new Conclusion(Conclusion.IRCBOT, 0.00);
+		insert(c);
+end
+
+rule "irc_5"
+	when
+		Hypothesis( description == "ORIG_BYTES_g94_ORIG_BYTES_le114")
+		eval(answer(Evidence.RESP_BYTES, "<=", 49))
+	then
+		Conclusion c = new Conclusion(Conclusion.IRCBOT, 0.00);
+		insert(c);
+end
+
+rule "irc_6"
+	when
+		Hypothesis( description == "ORIG_BYTES_g94_ORIG_BYTES_le114")
+		eval(answer(Evidence.RESP_BYTES, ">", 49))
+	then
+		Conclusion c = new Conclusion(Conclusion.IRCBOT, 95.59);
+		insert(c);
+end

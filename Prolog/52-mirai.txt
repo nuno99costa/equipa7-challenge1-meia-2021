@@ -1,0 +1,24 @@
+regra mirai6_1
+	se [avalia(history(Con, =<, 4.5))]
+	entao [cria_facto(mirai(Con, 0.00))].
+
+regra mirai6_2
+	se [avalia(history(Con, >, 4.5))]
+	entao [cria_facto(hipotese(Con, history_g45))].
+
+regra mirai6_3
+	se [hipotese(Con, history_g45) e avalia(orig_pkts(Con, =<, 81))]
+	entao [cria_facto(hipotese(Con, orig_pkts_ge81_history_g45))].
+
+regra mirai6_4
+	se [hipotese(Con, history_g45) e avalia(orig_pkts(Con, >, 81))]
+	entao [cria_facto(mirai(Con, 6.09))].
+
+regra mirai6_5
+	se [hipotese(Con, orig_pkts_ge81_history_g45) e avalia(id_orig_p(Con, =<, 51677))]
+	entao [cria_facto(mirai(Con, 42.94))].
+
+regra mirai6_6
+	se [hipotese(Con, orig_pkts_ge81_history_g45) e avalia(id_orig_p(Con, >, 51677))]
+	entao [cria_facto(mirai(Con, 84.42))].
+

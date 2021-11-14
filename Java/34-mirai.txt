@@ -1,0 +1,51 @@
+rule "mra5_1"
+	when
+		eval(answer(Evidence.ID_RESP_P, ">", 3461))
+	then
+		Hypothesis h = new Hypothesis("ID_RESP_P_g3461");
+		insert(h);
+end
+
+rule "mra5_2"
+	when
+		eval(answer(Evidence.ID_RESP_P, "<=", 3461))
+	then
+		Conclusion c = new Conclusion(Conclusion.MIRAI, 0.00);
+		insert(c);
+end
+
+rule "mra5_3"
+	when
+		Hypothesis( description == "ID_RESP_P_g3461")
+		eval(answer(Evidence.RESP_IP_BYTES, ">", 63))
+	then
+		Hypothesis h = new Hypothesis("ID_RESP_P_g3461_RESP_IP_BYTES_g63");
+		insert(h);
+end
+
+rule "mra5_4"
+	when
+		Hypothesis( description == "ID_RESP_P_g3461")
+		eval(answer(Evidence.RESP_IP_BYTES, "<=", 63))
+	then
+		Conclusion c = new Conclusion(Conclusion.MIRAI, 0.26);
+		insert(c);
+end
+
+rule "mra5_5"
+	when
+		Hypothesis( description == "ID_RESP_P_g3461_RESP_IP_BYTES_g63")
+		eval(answer(Evidence.RESP_PKTS, "<=", 50))
+	then
+		Conclusion c = new Conclusion(Conclusion.MIRAI, 0.09);
+		insert(c);
+end
+
+rule "mra5_6"
+	when
+		Hypothesis( description == "ID_RESP_P_g3461_RESP_IP_BYTES_g63")
+		eval(answer(Evidence.RESP_PKTS, ">", 50))
+	then
+		Conclusion c = new Conclusion(Conclusion.MIRAI, 34.83);
+		insert(c);
+end

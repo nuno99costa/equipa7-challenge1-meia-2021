@@ -1,0 +1,76 @@
+rule mtk_1
+	when
+		eval(answer(Evidence.ID_RESP_P, ">", 1265))
+	then
+		Conclusion c = new Conclusion(Conclusion.MUHSTIK, 99.73);
+        insert(c);
+end
+
+rule mtk_2
+	when
+		eval(answer(Evidence.ID_RESP_P, "<=", 1265))
+	then
+		Hypothesis h = new Hypothesis("ID_RESP_P_le1265");
+		insert(h);
+end
+
+
+regra mtk_2
+	se [avalia(id_resp_p(Con, =<, 1265))]
+	entao [cria_facto(hipotese(Con, id_resp_p_le1265))].
+
+regra mtk_3 
+	se [hipotese(Con, id_resp_p_le1265) e avalia(orig_bytes(Con, >, 1172))]
+	entao [cria_facto(hipotese(Con, id_resp_p_le1265_orig_bytes_g1172))].
+
+regra mtk_4
+	se [hipotese(Con, id_resp_p_le1265_orig_bytes_g1172) e avalia(orig_pkts(Con, =<, 19))]
+	entao [cria_facto(muhstik(Con, 40.05))].
+
+regra mtk_5
+	se [hipotese(Con, id_resp_p_le1265_orig_bytes_g1172) e avalia(orig_pkts(Con, >, 19))]
+	entao [cria_facto(hipotese(Con, id_resp_p_le1265_orig_bytes_g1172_orig_pkts_g19))].
+
+regra mtk_6
+	se [hipotese(Con, id_resp_p_le1265_orig_bytes_g1172_orig_pkts_g19) e avalia(orig_bytes(Con, >, 1866))]
+	entao [cria_facto(muhstik(Con, 0.00))].
+
+regra mtk_7
+	se [hipotese(Con, id_resp_p_le1265_orig_bytes_g1172_orig_pkts_g19) e avalia(orig_bytes(Con, =<, 1866))]
+	entao [cria_facto(muhstik(Con, 20.49))].
+
+regra mtk_8
+	se [hipotese(Con, id_resp_p_le1265) e avalia(orig_bytes(Con, =<, 1172))]
+	entao [cria_facto(hipotese(Con, id_resp_p_le1265_orig_bytes_le1172))].
+
+regra mtk_9
+	se [hipotese(Con, id_resp_p_le1265_orig_bytes_le1172) e avalia(orig_pkts(Con, >, 18.5))]
+	entao [cria_facto(hipotese(Con, id_resp_p_le1265_orig_bytes_le1172_orig_pkts_g18))].
+
+regra mtk_10
+	se [hipotese(Con, id_resp_p_le1265_orig_bytes_le1172_orig_pkts_g18) e avalia(orig_bytes(Con, =<, 487))]
+	entao [cria_facto(muhstik(Con, 14.11))].
+
+regra mtk_11
+	se [hipotese(Con, id_resp_p_le1265_orig_bytes_le1172_orig_pkts_g18) e avalia(orig_bytes(Con, >, 487))]
+	entao [cria_facto(hipotese(Con, id_resp_p_le1265_orig_bytes_le1172_orig_pkts_g18_orig_bytes_g487))].
+
+regra mtk_12
+	se [hipotese(Con, id_resp_p_le1265_orig_bytes_le1172_orig_pkts_g18_orig_bytes_g487) e avalia(resp_pkts(Con, >, 12))]
+	entao [cria_facto(muhstik(Con, 0.00))].
+
+regra mtk_13
+	se [hipotese(Con, id_resp_p_le1265_orig_bytes_le1172_orig_pkts_g18_orig_bytes_g487) e avalia(resp_pkts(Con, =<, 12))]
+	entao [cria_facto(muhstik(Con, 9.23))].
+
+regra mtk_14 
+	se [hipotese(Con, id_resp_p_le1265_orig_bytes_le1172) e avalia(orig_pkts(Con, =<, 18.5))]
+	entao [cria_facto(hipotese(Con, id_resp_p_le1265_orig_bytes_le1172_orig_pkts_le18))].
+
+regra mtk_15
+	se [hipotese(Con, id_resp_p_le1265_orig_bytes_le1172_orig_pkts_le18) e avalia(duration(Con, =<, 4.9143))]
+	entao [cria_facto(muhstik(Con, 0.02))].
+
+regra mtk_16
+	se [hipotese(Con, id_resp_p_le1265_orig_bytes_le1172_orig_pkts_le18) e avalia(duration(Con, >, 4.9143))]
+	entao [cria_facto(muhstik(Con, 0.48))].

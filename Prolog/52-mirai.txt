@@ -8,17 +8,40 @@ regra mra6_2
 
 regra mra6_3
 	se [hipotese(Con, history_g45) e avalia(orig_pkts(Con, =<, 81))]
-	entao [cria_facto(hipotese(Con, orig_pkts_ge81_history_g45))].
+	entao [cria_facto(hipotese(Con, history_g45_orig_pkts_le81))].
 
 regra mra6_4
 	se [hipotese(Con, history_g45) e avalia(orig_pkts(Con, >, 81))]
-	entao [cria_facto(mirai(Con, 6.09))].
+	entao [cria_facto(hipotese(Con, history_g45_orig_pkts_g81))].
 
 regra mra6_5
-	se [hipotese(Con, orig_pkts_ge81_history_g45) e avalia(id_orig_p(Con, =<, 51677))]
-	entao [cria_facto(mirai(Con, 42.94))].
+	se [hipotese(Con, history_g45_orig_pkts_le81) e membro(service(Con, ['dns']))]
+	entao [cria_facto(mirai(Con, 15.28))].
 
 regra mra6_6
-	se [hipotese(Con, orig_pkts_ge81_history_g45) e avalia(id_orig_p(Con, >, 51677))]
-	entao [cria_facto(mirai(Con, 84.42))].
+	se [hipotese(Con, history_g45_orig_pkts_le81) e nao membro(service(Con, ['dns']))]
+	entao [cria_facto(mirai(Con, 6.08))].
 
+regra mra6_7
+	se [hipotese(Con, history_g45_orig_pkts_g81) e avalia(id_orig_p(Con, >, 51677))]
+	entao [cria_facto(hipotese(Con, history_g45_orig_pkts_g81_id_orig_p_g51677))].
+
+regra mra6_8
+	se [hipotese(Con, history_g45_orig_pkts_g81) e avalia(id_orig_p(Con, =<, 51677))]
+	entao [cria_facto(hipotese(Con, history_g45_orig_pkts_g81_id_orig_p_le51677))].
+
+regra mra6_9
+	se [hipotese(Con, history_g45_orig_pkts_g81_id_orig_p_g51677) e avalia(orig_bytes(Con, =<, 87))]
+	entao [cria_facto(mirai(Con, 68.84))].
+
+regra mra6_10
+	se [hipotese(Con, history_g45_orig_pkts_g81_id_orig_p_g51677) e avalia(orig_bytes(Con, >, 87))]
+	entao [cria_facto(mirai(Con, 100.00))].
+
+regra mra6_11
+	se [hipotese(Con, history_g45_orig_pkts_g81_id_orig_p_le51677) e avalia(resp_pkts(Con, >, 109))]
+	entao [cria_facto(mirai(Con, 51.30))].
+
+regra mra6_12
+	se [hipotese(Con, history_g45_orig_pkts_g81_id_orig_p_le51677) e avalia(resp_pkts(Con, =<, 109))]
+	entao [cria_facto(mirai(Con, 38.77))].

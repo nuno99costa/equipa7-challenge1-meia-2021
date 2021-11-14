@@ -29,7 +29,8 @@
 :-include('43-mirai.txt').
 :-include('48-mirai.txt').
 :-include('49-mirai.txt').
-:-include('60-gagfyt.txt').
+:-include('52-mirai.txt').
+:-include('60-gagfyt.txt'). 
 
 bases_conhecimento([
 		'1-hideandseek.txt',
@@ -46,6 +47,7 @@ bases_conhecimento([
 		'43-mirai.txt',
 		'48-mirai.txt',
 		'49-mirai.txt',
+		'52-mirai.txt',
 		'60-gagfyt.txt'
 	]).
 
@@ -143,6 +145,13 @@ hipoteses([
 	hipotese(_, resp_bytes_g60382_resp_bytes_le179176),
 	hipotese(_, resp_bytes_g60382_resp_bytes_le179176_resp_bytes_g132319),
 	
+	% 52
+	hipotese(_, history_g45),
+	hipotese(_, history_g45_orig_pkts_le81),
+	hipotese(_, history_g45_orig_pkts_g81),
+	hipotese(_, history_g45_orig_pkts_g81_id_orig_p_g51677),
+	hipotese(_, history_g45_orig_pkts_g81_id_orig_p_le51677),
+
 	% 60
 	hipotese(_, orig_ip_bytes_le390632233),
 	hipotese(_, orig_ip_bytes_g390632233),
@@ -168,17 +177,31 @@ virus([
 valores([
 		conn_state(c,'S1'),
 		duration(c,5),
-		history(c,4),
-		id_orig_p(c,3332233),
+		history(c,5),
+		id_orig_p(c,1),
 		id_resp_p(c,3),
 		missed_bytes(c,6666),
-		orig_bytes(c,12100),
+		orig_bytes(c,1),
 		orig_ip_bytes(c,42222222222),
-		orig_pkts(c,22),	
+		orig_pkts(c,99),	
 		resp_bytes(c,1800),
 		resp_ip_bytes(c,64),	
-		resp_pkts(c,1),
-		service(c,'http')
+		resp_pkts(c,122),
+		service(c,'http'),
+
+		conn_state(d,'S0'),
+		duration(d,0.5),
+		history(d,4),
+		id_orig_p(d,123),
+		id_resp_p(d,311),
+		missed_bytes(d,23),
+		orig_bytes(d,4),
+		orig_ip_bytes(d,55),
+		orig_pkts(d,12),	
+		resp_bytes(d,51),
+		resp_ip_bytes(d,1),	
+		resp_pkts(d,4),
+		service(d,'dns')
 	]).
 
 run:-
@@ -374,9 +397,6 @@ explica([I|R]):-como(I),
 		explica(R).
 explica([]):-	write('********************************************************'),nl.
 
-
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Geracao de explicacoes do tipo "Porque nao"
 % Exemplo: ?- whynot(classe(meu_veiculo,ligeiro)).
@@ -508,13 +528,16 @@ inserir_evidencia(N, [E|Es]):-
 		N1 is N+1,
 		inserir_evidencia(N1, Es).
 
-% Predicato temporario
 conclusoes:-
-		conclusoes(c).
-conclusoes(Con):-
+		cons(L),
+		conclusoes(L).
+
+conclusoes([]).
+conclusoes([C|Cs]):-
 		virus(Vs),
-		write(' -- Conexao '),write(Con),write(' --'),nl,
-		conclusoes1(Con,Vs).
+		write(' -- Conexao '),write(C),write(' --'),nl,
+		conclusoes1(C,Vs),
+		conclusoes(Cs).
 		
 conclusoes1(_, []):-!.
 conclusoes1(Con, [(Name, Id)|Vs]):-
@@ -527,3 +550,12 @@ probabilidade(Con, Id, P):-
 		findall(N, facto(_,F), Ns), max_list(Ns, P),!.
 probabilidade(_, _, 0.00).
 	
+cons(L):-
+		valores(V),
+		cons1(V,L1),
+		list_to_set(L1,L).
+
+cons1([],[]).
+cons1([V|Vs],[C|Cs]):-
+		V =.. [_,C,_],
+		cons1(Vs,Cs).

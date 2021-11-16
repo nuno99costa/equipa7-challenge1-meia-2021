@@ -2,29 +2,29 @@ package org.engcia.model;
 
 public class Evidence extends Fact{
     public static final String CONN_STATE =
-            "Connection state (conn_state)?";
+            "Connection state (conn_state)";
     public static final String DURATION =
-            "Connection duration (duration)?";
+            "Connection duration (duration)";
     public static final String HISTORY =
-            "History of connections (history)?";
+            "History of connections (history)";
     public static final String ID_ORIG_P =
-            "Port used by the originator (id_orig_p)?";
+            "Port used by the originator (id_orig_p)";
     public static final String ID_RESP_P =
-            "Port used by the responder (id_resp_p)?";
+            "Port used by the responder (id_resp_p)";
     public static final String MISSED_BYTES =
-            "Number of bytes missed in content gaps (missed_bytes)?";
+            "Number of bytes missed in content gaps (missed_bytes)";
     public static final String ORIG_BYTES =
-            "Number of payload bytes sent by the originator (orig_bytes)?";
+            "Number of payload bytes sent by the originator (orig_bytes)";
     public static final String ORIG_IP_BYTES =
             "Number of IP level bytes sent by the originator (orig_ip_bytes)";
     public static final String ORIG_PKTS =
-            "Number of packets sent by the originator (orig_pkts)?";
+            "Number of packets sent by the originator (orig_pkts)";
     public static final String RESP_BYTES =
-            "Number of payload bytes sent by the responder (resp_bytes)?";
+            "Number of payload bytes sent by the responder (resp_bytes)";
     public static final String RESP_IP_BYTES =
             "Number of IP level bytes sent by the responder (resp_ip_bytes)";
     public static final String RESP_PKTS =
-            "Number of packets sent by the responder (resp_pkts)?";
+            "Number of packets sent by the responder (resp_pkts)";
     public static final String SERVICE =
             "Protocol used (service)?";
 

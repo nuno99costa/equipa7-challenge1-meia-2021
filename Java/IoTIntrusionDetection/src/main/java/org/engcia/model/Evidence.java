@@ -1,19 +1,32 @@
 package org.engcia.model;
 
 public class Evidence extends Fact{
-    public static final String CONN_STATE = "conn_state"; //"There is blood in the ear";
-    public static final String DURATION = "duration"; //"Do you have earache";
-    public static final String HISTORY = "history"; //"Do you have deafness";
-    public static final String ID_ORIG_P = "id_orig_p"; //"Is there crebrospinal fluid spill";
-    public static final String ID_RESP_P = "id_resp_p"; //"Do you have headache";
-    public static final String MISSED_BYTES = "missed_bytes"; //"Is there blood in the nose";
-    public static final String ORIG_BYTES = "orig_bytes"; //"Is there blood in the mouth";
-    public static final String ORIG_IP_BYTES = "orig_ip_bytes"; //"Is the blood colour dark brown";
-    public static final String ORIG_PKTS = "orig_pkts"; //"Is there vomiting";
-    public static final String RESP_BYTES = "resp_bytes"; //"Is there blood in the vagina";
-    public static final String RESP_IP_BYTES = "resp_ip_bytes"; //"Is there blood in the penis";
-    public static final String RESP_PKTS = "resp_pkts"; //"Is there blood in the anus";
-    public static final String SERVICE = "service"; //"Has the blood in the anus the apperance of coffee grounds";
+    public static final String CONN_STATE =
+            "Connection state (conn_state)?";
+    public static final String DURATION =
+            "Connection duration (duration)?";
+    public static final String HISTORY =
+            "History of connections (history)?";
+    public static final String ID_ORIG_P =
+            "Port used by the originator (id_orig_p)?";
+    public static final String ID_RESP_P =
+            "Port used by the responder (id_resp_p)?";
+    public static final String MISSED_BYTES =
+            "Number of bytes missed in content gaps (missed_bytes)?";
+    public static final String ORIG_BYTES =
+            "Number of payload bytes sent by the originator (orig_bytes)?";
+    public static final String ORIG_IP_BYTES =
+            "Number of IP level bytes sent by the originator (orig_ip_bytes)";
+    public static final String ORIG_PKTS =
+            "Number of packets sent by the originator (orig_pkts)?";
+    public static final String RESP_BYTES =
+            "Number of payload bytes sent by the responder (resp_bytes)?";
+    public static final String RESP_IP_BYTES =
+            "Number of IP level bytes sent by the responder (resp_ip_bytes)";
+    public static final String RESP_PKTS =
+            "Number of packets sent by the responder (resp_pkts)?";
+    public static final String SERVICE =
+            "Protocol used (service)?";
 
     private String evidence;
     private String value;

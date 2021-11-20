@@ -1,3 +1,8 @@
+package com.rules
+
+import com.model.*;
+
+
 // -----------------------------   1 - Hide and Seek
 
 rule "hns1"
@@ -38,155 +43,155 @@ end
 // -----------------------------   3 - MUHSTIK
 
 rule "mtk1"
-	when 
+	when
 		c : Connection(id_resp_p > 1265)
 	then
 		insertLogical(new Virus(c, EnumVirus.MUHSTIK, 99.73));
 end
 
 rule "mtk2"
-	when 
+	when
 		c : Connection(id_resp_p <= 1265, orig_bytes > 1172, orig_pkts <= 19)
 	then
 		insertLogical(new Virus(c, EnumVirus.MUHSTIK,40.05));
 end
 
 rule "mtk3"
-	when 
+	when
 		c : Connection(id_resp_p <= 1265, orig_bytes > 1172, orig_pkts > 19, orig_bytes <= 1866)
 	then
 		insertLogical(new Virus(c, EnumVirus.MUHSTIK, 20.49));
 end
 
 rule "mtk4"
-	when 
+	when
 		c : Connection(id_resp_p <= 1265, orig_pkts > 19, orig_bytes > 1866)
 	then
 		insertLogical(new Virus(c, EnumVirus.MUHSTIK, 0.00));
 end
 
 rule "mtk5"
-	when 
+	when
 		c : Connection(id_resp_p <= 1265, orig_bytes <= 1172, orig_pkts > 18, orig_bytes > 487, resp_pkts > 12)
 	then
 		insertLogical(new Virus(c, EnumVirus.MUHSTIK, 0.00));
 end
 
 rule "mtk6"
-	when 
+	when
 		c : Connection(id_resp_p <= 1265, orig_bytes <= 1172, orig_pkts > 18, orig_bytes > 487, resp_pkts <= 12)
 	then
 		insertLogical(new Virus(c, EnumVirus.MUHSTIK, 9.23));
 end
 
 rule "mtk7"
-	when 
+	when
 		c : Connection(id_resp_p <= 1265, orig_pkts > 18, orig_bytes <= 487)
 	then
 		insertLogical(new Virus(c, EnumVirus.MUHSTIK, 14.11));
 end
 
 rule "mtk8"
-	when 
+	when
 		c : Connection(id_resp_p <= 1265, orig_bytes <= 1172, orig_pkts <= 18, dur > 4.9143)
 	then
 		insertLogical(new Virus(c, EnumVirus.MUHSTIK, 0.48));
 end
 
 rule "mtk9"
-	when 
+	when
 		c : Connection(id_resp_p <= 1265, orig_bytes <= 1172, orig_pkts <= 18, dur <= 4.9143)
 	then
 		insertLogical(new Virus(c, EnumVirus.MUHSTIK, 0.02));
-end 
+end
 
 // -----------------------------   9 - HAJIME
 
 rule "hjm1"
-	when 
+	when
 		c : Connection(resp_pkts > 33)
 	then
 		insertLogical(new Virus(c, EnumVirus.HAJIME, 100.00));
 end
 
 rule "hjm2"
-	when 
+	when
 		c : Connection(resp_pkts <= 33, resp_pkts > 3, id_resp_p <= 22)
 	then
 		insertLogical(new Virus(c, EnumVirus.HAJIME, 91.66));
 end
 
 rule "hjm3"
-	when 
+	when
 		c : Connection(resp_pkts <= 33, resp_pkts > 3, id_resp_p > 22)
 	then
 		insertLogical(new Virus(c, EnumVirus.HAJIME, 0.03));
 end
 
 rule "hjm4"
-	when 
+	when
 		c : Connection(resp_pkts <= 33, resp_pkts <= 3, conn_state == "SF")
 	then
 		insertLogical(new Virus(c, EnumVirus.HAJIME, 14.49));
 end
 
 rule "hjm5"
-	when 
+	when
 		c : Connection(resp_pkts <= 33, resp_pkts <= 3, conn_state != "SF")
 	then
 		insertLogical(new Virus(c, EnumVirus.HAJIME, 0.00));
-end 
+end
 
 // -----------------------------   17 - KENJIRO
 
 rule "kjr1_1"
-	when 
+	when
 		c : Connection(id_resp_p > 45042)
 	then
 		insertLogical(new Virus(c, EnumVirus.KENJIRO, 29.60));
 end
 
 rule "kjr1_2"
-	when 
+	when
 		c : Connection(id_resp_p <= 45042, service == "http", history <= 8)
 	then
 		insertLogical(new Virus(c, EnumVirus.KENJIRO, 69.26));
 end
 
 rule "kjr1_3"
-	when 
+	when
 		c : Connection(id_resp_p <= 45042, service == "http", history > 8)
 	then
 		insertLogical(new Virus(c, EnumVirus.KENJIRO, 7.55));
 end
 
 rule "kjr1_4"
-	when 
+	when
 		c : Connection(id_resp_p <= 45042, service != "http", orig_pkts > 30)
 	then
 		insertLogical(new Virus(c, EnumVirus.KENJIRO, 18.98));
 end
 
 rule "kjr1_5"
-	when 
+	when
 		c : Connection(id_resp_p <= 45042, service != "http", orig_pkts <= 30, orig_ip_bytes <= 348)
 	then
 		insertLogical(new Virus(c, EnumVirus.KENJIRO, 0.04));
 end
 
 rule "kjr1_6"
-	when 
+	when
 		c : Connection(id_resp_p <= 45042, service != "http", orig_pkts <= 30, orig_ip_bytes > 348, history > 4)
 	then
 		insertLogical(new Virus(c, EnumVirus.KENJIRO, 31.02));
 end
 
 rule "kjr1_7"
-	when 
+	when
 		c : Connection(id_resp_p <= 45042, service != "http", orig_pkts <= 30, orig_ip_bytes > 348, history <= 4)
 	then
 		insertLogical(new Virus(c, EnumVirus.KENJIRO, 0.72));
-end 
+end
 
 // -----------------------------   20 - TORII
 
@@ -198,336 +203,336 @@ rule "tor2_1"
 end
 
 rule "tor2_2"
-	when 
+	when
 		c : Connection(conn_state != "S1", orig_bytes <= 1761)
 	then
 		insertLogical(new Virus(c, EnumVirus.TORII, 0.00));
 end
 
 rule "tor2_3"
-	when 
+	when
 		c : Connection(conn_state != "S1", orig_bytes > 1761)
 	then
 		insertLogical(new Virus(c, EnumVirus.TORII, 43.75));
-end 
+end
 
 // -----------------------------   21 - TORII
 
 rule "tor1_1"
-	when 
+	when
 		c : Connection(orig_bytes <= 7975)
 	then
 		insertLogical(new Virus(c, EnumVirus.TORII, 0.00));
 end
 
 rule "tor1_2"
-	when 
+	when
 		c : Connection(orig_bytes > 7975, history > 5)
 	then
 		insertLogical(new Virus(c, EnumVirus.TORII, 43.10));
 end
 
 rule "tor1_3"
-	when 
+	when
 		c : Connection(orig_bytes > 7975, history <= 4)
 	then
 		insertLogical(new Virus(c, EnumVirus.TORII, 100.0));
 end
 
 rule "tor1_4"
-	when 
+	when
 		c : Connection(orig_bytes > 7975, history == 5)
 	then
 		insertLogical(new Virus(c, EnumVirus.TORII, 74.78));
-end 
-    
+end
+
 // -----------------------------   33 - KENJIRO
 
 rule "kjr2_1"
-	when 
+	when
 		c : Connection(id_resp_p > 22648, id_orig_p > 39624, history > 8)
 	then
 		insertLogical(new Virus(c, EnumVirus.KENJIRO, 0.00));
 end
 
 rule "kjr2_2"
-	when 
+	when
 		c : Connection(id_resp_p > 22648, id_orig_p > 39624, history <= 8)
 	then
 		insertLogical(new Virus(c, EnumVirus.KENJIRO, 72.57));
 end
 
 rule "kjr2_3"
-	when 
+	when
 		c : Connection(id_resp_p > 22648, id_orig_p <= 39624)
 	then
 		insertLogical(new Virus(c, EnumVirus.KENJIRO, 85.50));
 end
 
 rule "kjr2_4"
-	when 
+	when
 		c : Connection(id_resp_p <= 22648, id_resp_p > 8080)
 	then
 		insertLogical(new Virus(c, EnumVirus.KENJIRO, 11.16));
 end
 
 rule "kjr2_5"
-	when 
+	when
 		c : Connection(id_resp_p <= 8080, id_resp_p > 101, orig_pkts > 4)
 	then
 		insertLogical(new Virus(c, EnumVirus.KENJIRO, 33.33));
 end
 
 rule "kjr2_6"
-	when 
+	when
 		c : Connection(id_resp_p <= 8080, id_resp_p > 101, orig_pkts <= 4, id_orig_p > 44814)
 	then
 		insertLogical(new Virus(c, EnumVirus.KENJIRO, 7.55));
 end
 
 rule "kjr2_7"
-	when 
+	when
 		c : Connection(id_resp_p <= 8080, id_resp_p > 101, orig_pkts <= 4, id_orig_p <= 44814)
 	then
 		insertLogical(new Virus(c, EnumVirus.KENJIRO, 0.00));
 end
 
 rule "kjr2_8"
-	when 
+	when
 		c : Connection(id_resp_p <= 101, conn_state == "S0")
 	then
 		insertLogical(new Virus(c, EnumVirus.KENJIRO, 1.91));
 end
 
 rule "kjr2_9"
-	when 
+	when
 		c : Connection(id_resp_p <= 101, conn_state != "S0")
 	then
 		insertLogical(new Virus(c, EnumVirus.KENJIRO, 0.00));
-end 
+end
 
 // -----------------------------   34 - MIRAI
 
 rule "mra5_1"
-	when 
+	when
 		c : Connection(id_resp_p > 3461, resp_ip_bytes > 63, resp_pkts > 50)
 	then
 		insertLogical(new Virus(c, EnumVirus.MIRAI, 34.83));
 end
 
 rule "mra5_2"
-	when 
+	when
 		c : Connection(id_resp_p > 3461, resp_ip_bytes > 63, resp_pkts <= 50)
 	then
 		insertLogical(new Virus(c, EnumVirus.MIRAI, 0.04));
 end
 
 rule "mra5_3"
-	when 
+	when
 		c : Connection(id_resp_p > 3461, resp_ip_bytes <= 63)
 	then
 		insertLogical(new Virus(c, EnumVirus.MIRAI, 0.26));
 end
 
 rule "mra5_4"
-	when 
+	when
 		c : Connection(id_resp_p <= 3461)
 	then
 		insertLogical(new Virus(c, EnumVirus.MIRAI, 0.00));
-end 
+end
 
 // -----------------------------   35 - MIRAI
 
 rule "mra2_1"
-	when 
+	when
 		c : Connection(history > 9, orig_pkts > 68)
 	then
 		insertLogical(new Virus(c, EnumVirus.MIRAI, 25.00));
 end
 
 rule "mra2_2"
-	when 
+	when
 		c : Connection(history > 9, orig_pkts <= 68)
 	then
 		insertLogical(new Virus(c, EnumVirus.MIRAI, 16.42));
 end
 
 rule "mra2_3"
-	when 
+	when
 		c : Connection(history <= 9, id_resp_p > 66, dur > 2.4132)
 	then
 		insertLogical(new Virus(c, EnumVirus.MIRAI, 1.12));
 end
 
 rule "mra2_4"
-	when 
+	when
 		c : Connection(history <= 9, id_resp_p > 66, dur <= 2.4132)
 	then
 		insertLogical(new Virus(c, EnumVirus.MIRAI, 0.64));
 end
 
 rule "mra2_5"
-	when 
+	when
 		c : Connection(history <= 9, id_resp_p <= 66)
 	then
 		insertLogical(new Virus(c, EnumVirus.MIRAI, 0.00));
-end 
+end
 
 // -----------------------------   39 - IRCBOT
 
 rule "irc1"
-	when 
+	when
 		c : Connection(orig_bytes <= 94)
 	then
 		insertLogical(new Virus(c, EnumVirus.IRCBOT, 0.00));
 end
 
 rule "irc2"
-	when 
+	when
 		c : Connection(orig_bytes > 94, orig_bytes > 114)
 	then
 		insertLogical(new Virus(c, EnumVirus.IRCBOT, 0.00));
 end
 
 rule "irc3"
-	when 
+	when
 		c : Connection(orig_bytes > 94, orig_bytes <= 114, resp_bytes > 49)
 	then
 		insertLogical(new Virus(c, EnumVirus.IRCBOT, 95.59));
 end
 
 rule "irc4"
-	when 
+	when
 		c : Connection(orig_bytes > 94, orig_bytes <= 114, resp_bytes <= 49)
 	then
 		insertLogical(new Virus(c, EnumVirus.IRCBOT, 0.00));
-end 
+end
 
 // -----------------------------   42 - TROJAN
 
 rule "trj1"
-	when 
+	when
 		c : Connection(missed_bytes > 730, dur > 1.0152)
 	then
 		insertLogical(new Virus(c, EnumVirus.TROJAN, 8.33));
 end
 
 rule "trj2"
-	when 
+	when
 		c : Connection(missed_bytes > 730, dur <= 1.0152)
 	then
 		insertLogical(new Virus(c, EnumVirus.TROJAN, 53.74));
 end
 
 rule "trj3"
-	when 
+	when
 		c : Connection(missed_bytes <= 730, orig_pkts > 30)
 	then
 		insertLogical(new Virus(c, EnumVirus.TROJAN, 2.45));
 end
 
 rule "trj4"
-	when 
+	when
 		c : Connection(missed_bytes <= 730, orig_pkts <= 30)
 	then
 		insertLogical(new Virus(c, EnumVirus.TROJAN, 0.00));
-end 
+end
 
 // -----------------------------   43 - MIRAI
 
 rule "mra4_1"
-	when 
+	when
 		c : Connection(id_orig_p > 30647, dur > 4.1452)
 	then
 		insertLogical(new Virus(c, EnumVirus.MIRAI, 42.27));
 end
 
 rule "mra4_2"
-	when 
+	when
 		c : Connection(id_orig_p > 30647, dur > 3.1616, dur <= 4.1452)
 	then
 		insertLogical(new Virus(c, EnumVirus.MIRAI, 95.57));
 end
 
 rule "mra4_3"
-	when 
+	when
 		c : Connection(id_orig_p > 30647, dur <= 3.1616, conn_state != "RSTO", conn_state != "S0", dur > 1.0609, history > 6)
 	then
 		insertLogical(new Virus(c, EnumVirus.MIRAI, 23.63));
 end
 
 rule "mra4_4"
-	when 
+	when
 		c : Connection(id_orig_p > 30647, dur <= 3.1616, conn_state != "RSTO", conn_state != "S0", dur > 1.0609, history <= 6)
 	then
 		insertLogical(new Virus(c, EnumVirus.MIRAI, 68.89));
 end
 
 rule "mra4_5"
-	when 
+	when
 		c : Connection(id_orig_p > 30647, conn_state != "RSTO", conn_state != "S0", dur <= 1.0609, id_orig_p > 36952)
 	then
 		insertLogical(new Virus(c, EnumVirus.MIRAI, 0.00));
 end
 
 rule "mra4_6"
-	when 
+	when
 		c : Connection(id_orig_p > 30647, conn_state != "RSTO", conn_state != "S0", dur <= 1.0609, id_orig_p <= 36952)
 	then
 		insertLogical(new Virus(c, EnumVirus.MIRAI, 23.24));
 end
 
 rule "mra4_7"
-	when 
+	when
 		c : Connection(id_orig_p > 30647, dur <= 3.1616, conn_state == "RSTO", orig_bytes > 19)
 	then
 		insertLogical(new Virus(c, EnumVirus.MIRAI, 90.25));
 end
 
 rule "mra4_8"
-	when 
+	when
 		c : Connection(id_orig_p > 30647, dur <= 3.1616, conn_state == "S0", orig_bytes > 19)
 	then
 		insertLogical(new Virus(c, EnumVirus.MIRAI, 90.25));
 end
 
 rule "mra4_9"
-	when 
+	when
 		c : Connection(id_orig_p > 30647, dur <= 3.1616, conn_state == "RSTO", orig_bytes <= 19, dur > 0.4998)
 	then
 		insertLogical(new Virus(c, EnumVirus.MIRAI, 34.61));
 end
 
 rule "mra4_10"
-	when 
+	when
 		c : Connection(id_orig_p > 30647, dur <= 3.1616, conn_state == "S0", orig_bytes <= 19, dur > 0.4998)
 	then
 		insertLogical(new Virus(c, EnumVirus.MIRAI, 34.61));
 end
 
 rule "mra4_11"
-	when 
+	when
 		c : Connection(id_orig_p > 30647, dur <= 3.1616, conn_state == "RSTO", orig_bytes <= 19, dur <= 0.4998)
 	then
 		insertLogical(new Virus(c, EnumVirus.MIRAI, 47.23));
 end
 
 rule "mra4_12"
-	when 
+	when
 		c : Connection(id_orig_p > 30647, dur <= 3.1616, conn_state == "S0", orig_bytes <= 19, dur <= 0.4998)
 	then
 		insertLogical(new Virus(c, EnumVirus.MIRAI, 47.23));
 end
 
 rule "mra4_13"
-	when 
+	when
 		c : Connection(id_orig_p <= 30647, id_resp_p > 45042)
 	then
 		insertLogical(new Virus(c, EnumVirus.MIRAI, 0.83));
 end
 
 rule "mra4_14"
-	when 
+	when
 		c : Connection(id_orig_p <= 30647, id_resp_p <= 45042)
 	then
 		insertLogical(new Virus(c, EnumVirus.MIRAI, 0.00));
@@ -536,175 +541,175 @@ end
 // -----------------------------   48 - MIRAI
 
 rule "mra1_1"
-	when 
+	when
 		c : Connection(resp_pkts > 304)
 	then
 		insertLogical(new Virus(c, EnumVirus.MIRAI, 100));
 end
 
 rule "mra1_2"
-	when 
+	when
 		c : Connection(resp_pkts <= 304, resp_bytes > 82355, orig_pkts > 138)
 	then
 		insertLogical(new Virus(c, EnumVirus.MIRAI, 21.69));
 end
 
 rule "mra1_3"
-	when 
+	when
 		c : Connection(resp_pkts <= 304, resp_bytes > 82355, orig_pkts <= 138)
 	then
 		insertLogical(new Virus(c, EnumVirus.MIRAI, 14.55));
 end
 
 rule "mra1_4"
-	when 
+	when
 		c : Connection(resp_pkts <= 304, resp_bytes > 13208, resp_bytes <= 82355)
 	then
 		insertLogical(new Virus(c, EnumVirus.MIRAI, 9.41));
 end
 
 rule "mra1_5"
-	when 
+	when
 		c : Connection(resp_pkts <= 304, resp_bytes <= 13208)
 	then
 		insertLogical(new Virus(c, EnumVirus.MIRAI, 0.00));
-end 
+end
 
 // -----------------------------   49 - MIRAI
 
 rule "mra3_1"
-	when 
+	when
 		c : Connection(resp_bytes > 179176)
 	then
 		insertLogical(new Virus(c, EnumVirus.MIRAI, 100.00));
 end
 
 rule "mra3_2"
-	when 
+	when
 		c : Connection(resp_bytes <= 179176, resp_bytes > 132319, orig_bytes > 149)
 	then
 		insertLogical(new Virus(c, EnumVirus.MIRAI, 58.69));
 end
 
 rule "mra3_3"
-	when 
+	when
 		c : Connection(resp_bytes <= 179176, resp_bytes > 132319, orig_bytes <= 149)
 	then
 		insertLogical(new Virus(c, EnumVirus.MIRAI, 44.18));
 end
 
 rule "mra3_4"
-	when 
+	when
 		c : Connection(resp_bytes > 60382, resp_bytes <= 132319)
 	then
 		insertLogical(new Virus(c, EnumVirus.MIRAI, 33.75));
 end
 
 rule "mra3_5"
-	when 
+	when
 		c : Connection(resp_bytes <= 60382)
 	then
 		insertLogical(new Virus(c, EnumVirus.MIRAI, 0.00));
-end 
+end
 
 // -----------------------------   52 - MIRAI
 
 rule "mra6_1"
-	when 
+	when
 		c : Connection(history > 4, orig_pkts > 81, id_orig_p > 51677, orig_bytes > 87)
 	then
 		insertLogical(new Virus(c, EnumVirus.MIRAI, 100.00));
 end
 
 rule "mra6_2"
-	when 
+	when
 		c : Connection(history > 4, orig_pkts > 81, id_orig_p > 51677, orig_bytes <= 87)
 	then
 		insertLogical(new Virus(c, EnumVirus.MIRAI, 68.84));
 end
 
 rule "mra6_3"
-	when 
+	when
 		c : Connection(history > 4, orig_pkts > 81, id_orig_p <= 51677, resp_pkts > 109)
 	then
 		insertLogical(new Virus(c, EnumVirus.MIRAI, 51.30));
 end
 
 rule "mra6_4"
-	when 
+	when
 		c : Connection(history > 4, orig_pkts > 81, id_orig_p <= 51677, resp_pkts <= 109)
 	then
 		insertLogical(new Virus(c, EnumVirus.MIRAI, 38.77));
 end
 
 rule "mra6_5"
-	when 
+	when
 		c : Connection(history > 4, orig_pkts <= 81, service == "dns")
 	then
 		insertLogical(new Virus(c, EnumVirus.MIRAI, 15.28));
 end
 
 rule "mra6_6"
-	when 
+	when
 		c : Connection(history > 4, orig_pkts <= 81, service != "dns")
 	then
 		insertLogical(new Virus(c, EnumVirus.MIRAI, 6.08));
 end
 
 rule "mra6_7"
-	when 
+	when
 		c : Connection(history <= 4)
 	then
 		insertLogical(new Virus(c, EnumVirus.MIRAI, 0.00));
-end 
+end
 
 // -----------------------------   60 - GAGFYT
 
 rule "gft_1"
-	when 
+	when
 		c : Connection(orig_ip_bytes > 390632233, orig_pkts > 19684999, id_orig_p > 50420)
 	then
 		insertLogical(new Virus(c, EnumVirus.GAGFYT, 4.41));
 end
 
 rule "gft_2"
-	when 
+	when
 		c : Connection(orig_ip_bytes > 390632233, orig_pkts > 19684999, id_orig_p <= 50420)
 	then
 		insertLogical(new Virus(c, EnumVirus.GAGFYT, 14.08));
 end
 
 rule "gft_3"
-	when 
+	when
 		c : Connection(orig_ip_bytes > 390632233, orig_pkts <= 19684999)
 	then
 		insertLogical(new Virus(c, EnumVirus.GAGFYT, 46.28));
 end
 
 rule "gft_4"
-	when 
+	when
 		c : Connection(orig_ip_bytes <= 390632233, orig_ip_bytes > 125909890)
 	then
 		insertLogical(new Virus(c, EnumVirus.GAGFYT, 8.34));
 end
 
 rule "gft_5"
-	when 
+	when
 		c : Connection(orig_ip_bytes <= 125909890, id_resp_p > 55610, id_orig_p > 22184)
 	then
 		insertLogical(new Virus(c, EnumVirus.GAGFYT, 0.34));
 end
 
 rule "gft_6"
-	when 
+	when
 		c : Connection(orig_ip_bytes <= 125909890, id_resp_p > 55610, id_orig_p <= 22184)
 	then
 		insertLogical(new Virus(c, EnumVirus.GAGFYT, 0.67));
 end
 
 rule "gft_7"
-	when 
+	when
 		c : Connection(orig_ip_bytes <= 125909890, id_resp_p <= 55610)
 	then
 		insertLogical(new Virus(c, EnumVirus.GAGFYT, 0.01));
-end 
+end

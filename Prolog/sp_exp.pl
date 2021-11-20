@@ -49,15 +49,15 @@ evidencias([
 	]).
 
 virus([
-		('Hide and Seek', hide_and_seek),
-		('Trojan', trojan),
-		('Hajime', hajime),
-		('Kenjiro', kenjiro),
-		('Torii', torii),
-		('IRCBot', ircbot),
-		('Mirai', mirai),
-		('Muhstik', muhstik),
-		('Gagfyt', gagfyt)
+		('HIDE_AND_SEEK', hide_and_seek),
+		('TROJAN', trojan),
+		('HAJIME', hajime),
+		('KENJIRO', kenjiro),
+		('TORII', torii),
+		('IRCBOT', ircbot),
+		('MIRAI', mirai),
+		('MUHSTIK', muhstik),
+		('GAGFYT', gagfyt)
 	]).
 
 valores([
@@ -73,45 +73,18 @@ valores([
 		resp_bytes(c,1),
 		resp_ip_bytes(c,3),	
 		resp_pkts(c,1),
-		service(c,'http') /*,
-
-		conn_state(d,'S0'),
-		duration(d,0.5),
-		history(d,4),
-		id_orig_p(d,123),
-		id_resp_p(d,311),
-		missed_bytes(d,23),
-		orig_bytes(d,4),
-		orig_ip_bytes(d,55),
-		orig_pkts(d,12),	
-		resp_bytes(d,51),
-		resp_ip_bytes(d,1),	
-		resp_pkts(d,4),
-		service(d,'dns') */
+		service(c,'http')
 	]).
+
+inicializar_sistema:-gera_metaconhecimento.
 
 run:-
 	limpar_bc, inserir_evidencias,		% Codigo temporario para testes
-	ultimo_facto,
-	gera_metaconhecimento,
 	arranca_motor.
 
-carrega_bc:-
-		%write('NOME DA BASE DE CONHECIMENTO (terminar com .)-> '),
-		%read(NBC),
-		%bases_conhecimento(NBCs),
-		%carrega_bc(NBCs),
-		% ultima_regra, 
-
-		ultimo_facto,
-		gera_metaconhecimento.
-		
-
-carrega_bc([]):-nl.
-carrega_bc([NBC|NBCs]):-
-		consult(NBC),
-		write(' -- Consulted '),write(NBC),write(' --'),nl,
-		carrega_bc(NBCs).
+run(Ev):-
+	limpar_bc, inserir_evidencia(0, Ev),
+	arranca_motor.
 
 arranca_motor:-arranca_motor(0),!.
 
@@ -211,8 +184,8 @@ cria_facto(F,ID,LFactos):-
 	N is N1+1,
 	asserta(ultimo_facto(N)),
 	assertz(justifica(N,ID,LFactos)),
-	assertz(facto(N,F)),
-	write('Foi concluido o facto n '),write(N),write(' -> '),write(F),nl,!.%get0(_),!.
+	assertz(facto(N,F)),!.
+	%write('Foi concluido o facto n '),write(N),write(' -> '),write(F),nl,!.%get0(_),!.
 
 % Novo predicado - Jose
 membro(N,P):-	P=..[Functor,Entidade,Valores],
@@ -407,40 +380,23 @@ inserir_evidencias:-
 		valores(Es), 
 		inserir_evidencia(1,Es).
 
-inserir_evidencia(_, []):-!.
+inserir_evidencia(_, []):-ultimo_facto,!.
 inserir_evidencia(N, [E|Es]):-
 		assertz(facto(N, E)),
 		N1 is N+1,
 		inserir_evidencia(N1, Es).
 
-conclusoes:-
-		cons(L),
-		conclusoes(L).
-
-conclusoes([]).
-conclusoes([C|Cs]):-
+conclusoes(C):-
 		virus(Vs),
-		write(' -- Conexao '),write(C),write(' --'),nl,
-		conclusoes1(C,Vs),
-		conclusoes(Cs).
+		conclusoes(c,Vs,C).
 		
-conclusoes1(_, []):-!.
-conclusoes1(Con, [(Name, Id)|Vs]):-
+conclusoes(_, [], []):-!.
+conclusoes(Con, [(Name, Id)|Vs], [Name:P|Ps]):-
 		probabilidade(Con,Id,P),
-		write('	  Probabilidade do virus '),write(Name),write(': '),writeln(P),
-		conclusoes1(Con, Vs).
+		conclusoes(Con, Vs, Ps).
 
 probabilidade(Con, Id, P):-
 		F =.. [Id,Con,N],
 		findall(N, facto(_,F), Ns), max_list(Ns, P),!.
 probabilidade(_, _, 0.00).
 	
-cons(L):-
-		valores(V),
-		cons1(V,L1),
-		list_to_set(L1,L).
-
-cons1([],[]).
-cons1([V|Vs],[C|Cs]):-
-		V =.. [_,C,_],
-		cons1(Vs,Cs).

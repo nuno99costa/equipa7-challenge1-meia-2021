@@ -15,22 +15,22 @@
 :-dynamic facto_dispara_regras/2.
 :-dynamic valores/1.
 
-:-include('1-hideandseek.txt').
-:-include('3-muhstik.txt'). 
-:-include('9-hajime.txt').
-:-include('17-kenjiro.txt').
-:-include('20-torii.txt'). 
-:-include('21-torii.txt').
-:-include('33-kenjiro.txt').
-:-include('34-mirai.txt').
-:-include('35-mirai.txt').
-:-include('39-ircbot.txt').
-:-include('42-trojan.txt').
-:-include('43-mirai.txt').
-:-include('48-mirai.txt').
-:-include('49-mirai.txt').
-:-include('52-mirai.txt').
-:-include('60-gagfyt.txt').
+:-include('rules/1-hideandseek.txt').
+:-include('rules/3-muhstik.txt'). 
+:-include('rules/9-hajime.txt').
+:-include('rules/17-kenjiro.txt').
+:-include('rules/20-torii.txt'). 
+:-include('rules/21-torii.txt').
+:-include('rules/33-kenjiro.txt').
+:-include('rules/34-mirai.txt').
+:-include('rules/35-mirai.txt').
+:-include('rules/39-ircbot.txt').
+:-include('rules/42-trojan.txt').
+:-include('rules/43-mirai.txt').
+:-include('rules/48-mirai.txt').
+:-include('rules/49-mirai.txt').
+:-include('rules/52-mirai.txt').
+:-include('rules/60-gagfyt.txt').
 
 evidencias([
 		orig_pkts(_,_),
@@ -61,19 +61,19 @@ virus([
 	]).
 
 valores([
-		conn_state(c,'RST1O'),
+		conn_state(c,'RSTO'),
 		duration(c,4.2),
 		history(c,5),
 		id_orig_p(c,1),
 		id_resp_p(c,50000),
 		missed_bytes(c,3),
 		orig_bytes(c,1),
-		orig_ip_bytes(c,150000000222),
+		orig_ip_bytes(c,123123),
 		orig_pkts(c,82),	
 		resp_bytes(c,1),
 		resp_ip_bytes(c,3),	
 		resp_pkts(c,1),
-		service(c,'dnas'),
+		service(c,'http') /*,
 
 		conn_state(d,'S0'),
 		duration(d,0.5),
@@ -87,7 +87,7 @@ valores([
 		resp_bytes(d,51),
 		resp_ip_bytes(d,1),	
 		resp_pkts(d,4),
-		service(d,'dns') 
+		service(d,'dns') */
 	]).
 
 run:-
@@ -404,7 +404,7 @@ limpar_bc:-
 		retractall(facto(_,_)).
 
 inserir_evidencias:-
-		valores(Es),
+		valores(Es), 
 		inserir_evidencia(1,Es).
 
 inserir_evidencia(_, []):-!.

@@ -27,7 +27,7 @@ public class IotIntrusionDetectionController {
 
     @RequestMapping(value = "/iotintrusiondetection",
             method = RequestMethod.GET, produces = "application/json")
-    public Map<EnumVirus, Double> getQuestions(
+    public Map<EnumVirus, Double> getVirusList(
             @RequestParam(required = true) String conn_state,
             @RequestParam(required = true) double duration,
             @RequestParam(required = true) int history,

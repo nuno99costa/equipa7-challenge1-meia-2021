@@ -1,0 +1,58 @@
+regra mra6_1
+	se 
+		[avalia(history(Con, >, 4)) e 
+		avalia(orig_pkts(Con, >, 81)) e 
+		avalia(id_orig_p(Con, >, 51677)) e 
+		avalia(orig_bytes(Con, >, 87))]
+	entao 
+		[cria_facto(mirai(Con, 100.00))].
+
+regra mra6_2
+	se 
+		[avalia(history(Con, >, 4)) e 
+		avalia(orig_pkts(Con, >, 81)) e 
+		avalia(id_orig_p(Con, >, 51677)) e 
+		avalia(orig_bytes(Con, =<, 87))]
+	entao 
+		[cria_facto(mirai(Con, 68.84))].
+
+regra mra6_3
+	se 
+		[avalia(history(Con, >, 4)) e 
+		avalia(orig_pkts(Con, >, 81)) e 
+		avalia(id_orig_p(Con, =<, 51677)) e 
+		avalia(resp_pkts(Con, >, 109))]
+	entao 
+		[cria_facto(mirai(Con, 51.30))].
+
+regra mra6_4
+	se 
+		[avalia(history(Con, >, 4)) e 
+		avalia(orig_pkts(Con, >, 81)) e 
+		avalia(id_orig_p(Con, =<, 51677)) e 
+		avalia(resp_pkts(Con, =<, 109))]
+	entao 
+		[cria_facto(mirai(Con, 38.77))].
+
+regra mra6_5
+	se 
+		[avalia(history(Con, >, 4)) e 
+		avalia(orig_pkts(Con, =<, 81)) e
+		membro(service(Con, ['dns']))]
+	entao 
+		[cria_facto(mirai(Con, 15.28))].
+
+
+regra mra6_6
+	se 
+		[avalia(history(Con, >, 4)) e 
+		avalia(orig_pkts(Con, =<, 81)) e
+		nao membro(service(Con, ['dns']))]
+	entao 
+		[cria_facto(mirai(Con, 6.08))].
+
+regra mra6_7
+	se 
+		[avalia(history(Con, =<, 4))]
+	entao 
+		[cria_facto(mirai(Con, 0.00))].

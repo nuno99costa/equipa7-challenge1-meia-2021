@@ -61,19 +61,19 @@ virus([
 	]).
 
 valores([
-		conn_state(c,'RSTO'),
-		duration(c,4.2),
-		history(c,5),
-		id_orig_p(c,1),
-		id_resp_p(c,50000),
-		missed_bytes(c,3),
-		orig_bytes(c,1),
-		orig_ip_bytes(c,123123),
-		orig_pkts(c,82),	
-		resp_bytes(c,1),
-		resp_ip_bytes(c,3),	
-		resp_pkts(c,1),
-		service(c,'http')
+		conn_state(c,'S1'),
+		duration(c,1.21),
+		history(c,18),
+		id_orig_p(c,20000),
+		id_resp_p(c,15000),
+		missed_bytes(c,10),
+		orig_bytes(c,800),
+		orig_ip_bytes(c,20000),
+		orig_pkts(c,30),	
+		resp_bytes(c,20),
+		resp_ip_bytes(c,10),	
+		resp_pkts(c,10),
+		service(c,'dns')
 	]).
 
 inicializar_sistema:-gera_metaconhecimento.

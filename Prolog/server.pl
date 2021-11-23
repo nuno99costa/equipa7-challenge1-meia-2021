@@ -6,9 +6,12 @@
 % Bibliotecas JSON
 :- use_module(library(http/json_convert)).
 :- use_module(library(http/http_json)).
+:- use_module(library(http/http_cors)).
 :- use_module(library(http/json)).
 
 :-consult(sp_exp).
+
+:- set_setting(http:cors, [*]).
 
 :- http_handler('/iotintrusiondetection', get_virus_list, []).
 
@@ -18,6 +21,7 @@ server(Port) :-
         http_server(http_dispatch, [port(Port)]).
 
 get_virus_list(Request) :-
+  cors_enable,
     http_parameters(Request,
                     [ conn_state(Conn_state, []),
                       duration(Duration, [float]),

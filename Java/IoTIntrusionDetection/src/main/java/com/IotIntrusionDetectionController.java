@@ -26,19 +26,19 @@ public class IotIntrusionDetectionController {
     @RequestMapping(value = "/iotintrusiondetection",
             method = RequestMethod.GET, produces = "application/json")
     public Map<EnumVirus, Double> getVirusList(
-            @RequestParam(required = true) String conn_state,
-            @RequestParam(required = true) double duration,
-            @RequestParam(required = true) int history,
-            @RequestParam(required = true) int id_orig_p,
-            @RequestParam(required = true) int id_resp_p,
-            @RequestParam(required = true) int missed_bytes,
-            @RequestParam(required = true) int orig_bytes,
-            @RequestParam(required = true) int orig_ip_bytes,
-            @RequestParam(required = true) int orig_pkts,
-            @RequestParam(required = true) int resp_bytes,
-            @RequestParam(required = true) int resp_ip_bytes,
-            @RequestParam(required = true) int resp_pkts,
-            @RequestParam(required = true) String service) {
+            @RequestParam(required = false) String conn_state,
+            @RequestParam(required = false) Double duration,
+            @RequestParam(required = false) Integer history,
+            @RequestParam(required = false) Integer id_orig_p,
+            @RequestParam(required = false) Integer id_resp_p,
+            @RequestParam(required = false) Integer missed_bytes,
+            @RequestParam(required = false) Integer orig_bytes,
+            @RequestParam(required = false) Integer orig_ip_bytes,
+            @RequestParam(required = false) Integer orig_pkts,
+            @RequestParam(required = false) Integer resp_bytes,
+            @RequestParam(required = false) Integer resp_ip_bytes,
+            @RequestParam(required = false) Integer resp_pkts,
+            @RequestParam(required = false) String service) {
 
         Connection connection = new Connection(conn_state, duration, history, id_orig_p, id_resp_p, missed_bytes,
                 orig_bytes, orig_ip_bytes, orig_pkts, resp_bytes, resp_ip_bytes, resp_pkts, service);

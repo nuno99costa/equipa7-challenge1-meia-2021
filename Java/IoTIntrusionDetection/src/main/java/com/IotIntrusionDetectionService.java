@@ -58,17 +58,22 @@ public class IotIntrusionDetectionService {
         }
 
         Map<EnumVirus, Double> map = new HashMap<EnumVirus, Double>();
-        double cf = 0;
         for(EnumVirus ev: EnumVirus.values()){
-            cf = 0;
+            boolean found = false;
+            double cf = 0;
             for(Virus v: facts)
-                if(v.getVirus().equals(ev))
-                    if(v.getCf() > cf)
+                if(v.getVirus().equals(ev)) {
+                    found = true;
+                    if (v.getCf() > cf)
                         cf = v.getCf();
-            map.put(ev, cf);
+                }
+            if(found)
+                map.put(ev, cf);
         }
 
-        return map;
+        Map<EnumVirus, Double> sortedMap = new TreeMap<EnumVirus, Double>(map);
+
+        return sortedMap;
     }
 
     private void printFactsMessage(KieSession kieSession) {

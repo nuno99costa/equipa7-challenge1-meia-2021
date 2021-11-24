@@ -3,22 +3,22 @@ package com.model;
 public class Connection {
 
     private String conn_state;
-    private double dur;
-    private int history;
-    private int id_orig_p;
-    private int id_resp_p;
-    private int missed_bytes;
-    private int orig_bytes;
-    private int orig_ip_bytes;
-    private int orig_pkts;
-    private int resp_bytes;
-    private int resp_ip_bytes;
-    private int resp_pkts;
+    private Double dur;
+    private Integer history;
+    private Integer id_orig_p;
+    private Integer id_resp_p;
+    private Integer missed_bytes;
+    private Integer orig_bytes;
+    private Integer orig_ip_bytes;
+    private Integer orig_pkts;
+    private Integer resp_bytes;
+    private Integer resp_ip_bytes;
+    private Integer resp_pkts;
     private String service;
 
-    public Connection(String conn_state, double duration, int history, int id_orig_p, int id_resp_p, int missed_bytes,
-                      int orig_bytes, int orig_ip_bytes, int orig_pkts, int resp_bytes, int resp_ip_bytes,
-                      int resp_pkts, String service){
+    public Connection(String conn_state, Double duration, Integer history, Integer id_orig_p, Integer id_resp_p, Integer missed_bytes,
+                      Integer orig_bytes, Integer orig_ip_bytes, Integer orig_pkts, Integer resp_bytes, Integer resp_ip_bytes,
+                      Integer resp_pkts, String service){
         this.conn_state = conn_state;
         this.dur = duration;
         this.history = history;
@@ -42,91 +42,91 @@ public class Connection {
         this.conn_state = conn_state;
     }
 
-    public double getDur() {
+    public Double getDur() {
         return dur;
     }
 
-    public void setDur(double dur) {
+    public void setDur(Double dur) {
         this.dur = dur;
     }
 
-    public int getHistory() {
+    public Integer getHistory() {
         return history;
     }
 
-    public void setHistory(int history) {
+    public void setHistory(Integer history) {
         this.history = history;
     }
 
-    public int getId_orig_p() {
+    public Integer getId_orig_p() {
         return id_orig_p;
     }
 
-    public void setId_orig_p(int id_orig_p) {
+    public void setId_orig_p(Integer id_orig_p) {
         this.id_orig_p = id_orig_p;
     }
 
-    public int getId_resp_p() {
+    public Integer getId_resp_p() {
         return id_resp_p;
     }
 
-    public void setId_resp_p(int id_resp_p) {
+    public void setId_resp_p(Integer id_resp_p) {
         this.id_resp_p = id_resp_p;
     }
 
-    public int getMissed_bytes() {
+    public Integer getMissed_bytes() {
         return missed_bytes;
     }
 
-    public void setMissed_bytes(int missed_bytes) {
+    public void setMissed_bytes(Integer missed_bytes) {
         this.missed_bytes = missed_bytes;
     }
 
-    public int getOrig_bytes() {
+    public Integer getOrig_bytes() {
         return orig_bytes;
     }
 
-    public void setOrig_bytes(int orig_bytes) {
+    public void setOrig_bytes(Integer orig_bytes) {
         this.orig_bytes = orig_bytes;
     }
 
-    public int getOrig_ip_bytes() {
+    public Integer getOrig_ip_bytes() {
         return orig_ip_bytes;
     }
 
-    public void setOrig_ip_bytes(int orig_ip_bytes) {
+    public void setOrig_ip_bytes(Integer orig_ip_bytes) {
         this.orig_ip_bytes = orig_ip_bytes;
     }
 
-    public int getOrig_pkts() {
+    public Integer getOrig_pkts() {
         return orig_pkts;
     }
 
-    public void setOrig_pkts(int orig_pkts) {
+    public void setOrig_pkts(Integer orig_pkts) {
         this.orig_pkts = orig_pkts;
     }
 
-    public int getResp_bytes() {
+    public Integer getResp_bytes() {
         return resp_bytes;
     }
 
-    public void setResp_bytes(int resp_bytes) {
+    public void setResp_bytes(Integer resp_bytes) {
         this.resp_bytes = resp_bytes;
     }
 
-    public int getResp_ip_bytes() {
+    public Integer getResp_ip_bytes() {
         return resp_ip_bytes;
     }
 
-    public void setResp_ip_bytes(int resp_ip_bytes) {
+    public void setResp_ip_bytes(Integer resp_ip_bytes) {
         this.resp_ip_bytes = resp_ip_bytes;
     }
 
-    public int getResp_pkts() {
+    public Integer getResp_pkts() {
         return resp_pkts;
     }
 
-    public void setResp_pkts(int resp_pkts) {
+    public void setResp_pkts(Integer resp_pkts) {
         this.resp_pkts = resp_pkts;
     }
 

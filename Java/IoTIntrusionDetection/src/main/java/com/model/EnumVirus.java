@@ -1,13 +1,17 @@
 package com.model;
 
-public enum EnumVirus {
-    MIRAI,
-    TORII,
-    TROJAN,
+public enum EnumVirus implements Comparable<EnumVirus> {
     GAGFYT,
-    HIDE_AND_SEEK,
     HAJIME,
-    KENJIRO,
+    HIDE_AND_SEEK,
     IRCBOT,
-    MUHSTIK
+    KENJIRO,
+    MIRAI,
+    MUHSTIK,
+    TORII,
+    TROJAN;
+
+    public int compare(EnumVirus o1, EnumVirus o2) {
+        return o1.toString().compareTo(o2.toString());
+    }
 }
